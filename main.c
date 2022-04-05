@@ -32,8 +32,7 @@ int kb_logic(){
 int main(){
     struct Player p;
     int game = 1, gt = 0, wt = 20000;
-    //char primitive_clear[20] = "\x1B[2J\x1B[H";
-    char primitive_clear[20] = "\x1B[2J";
+    char primitive_clear[20] = "\x1B[2J\x1B[H";
     int at = 0; //Animation State TEMP
     bool paused = false, update_step = false;
     char input = 0;
