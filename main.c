@@ -33,11 +33,10 @@ int main(){
     struct Player p;
     int game = 1, gt = 0, wt = 20000;
     char primitive_clear[20] = "\x1B[2J\x1B[H";
-    int at = 0; //Animation State TEMP
     bool paused = false, update_step = false;
     char input = 0;
 
-    p = create_player(" O\n", "-|-\n", "/|\n", " |\\\n", 0, 3, 3, 3, false);
+    p = create_player(" O\n", "-|-\n", "/|\n", " |\\\n", 0, 3, 3, 3, 0, false);
 
     //Starting Conditions
     print_p2(p);
@@ -49,19 +48,12 @@ int main(){
             
             if(gt % wt == 0){
                 update_step = true;
-                if((at == 0) & (p.is_moving==true)){
+                if((p.is_moving==true)){
                     printf("%s", primitive_clear);
-                    print_p1(p);
-                    at = 1;
+                    if(p.at == 0){print_p1(p); p.at = 1; }
+                    else if(p.at == 1){print_p2(p); p.at = 0; }
                     p.is_moving = false;
                 }
-                else if((at == 1) & (p.is_moving==true)){
-                    printf("%s", primitive_clear);
-                    print_p2(p);
-                    at = 0;
-                    p.is_moving = false;
-                }
-
             }
             if(_kbhit()){input = kb_logic(); }
             gt = gt_logic(gt);

@@ -4,12 +4,12 @@
 //Player Base Fields
 struct Player {
     char head[6], body[6], leg1[6], leg2[6];
-    int x, y, h, w;
+    int x, y, h, w, at;
     bool is_moving;
 };
 
 //TODO: 
-struct Player create_player(char head[], char body[], char leg1[], char leg2[], int x, int y, int h, int w, bool is_moving){
+struct Player create_player(char head[], char body[], char leg1[], char leg2[], int x, int y, int h, int w, int at, bool is_moving){
     struct Player p;
     //Body
     strcpy(p.head, head);
@@ -24,6 +24,9 @@ struct Player create_player(char head[], char body[], char leg1[], char leg2[], 
     //HitBox
     p.h = h; //1 Height Unit is one newline
     p.w = w; //1 Width Unit is two spaces
+
+    //Animation
+    p.at = at;
 
     //Movement Check
     p.is_moving = is_moving;
