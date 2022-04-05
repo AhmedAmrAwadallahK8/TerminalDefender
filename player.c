@@ -30,6 +30,7 @@ struct Player create_player(char head[], char body[], char leg1[], char leg2[], 
     return p;
 }
 
+//??: Move This Function elsewhere
 //Left Right Movement
 void LR_movement(int spaces){
     for(int i = 0; i<spaces; i++){
@@ -37,6 +38,7 @@ void LR_movement(int spaces){
     }
 }
 
+//??: Move this function elsewhere
 //Up Down Movement
 void UD_movement(int nl){
     for(int i = 0; i<nl; i++){

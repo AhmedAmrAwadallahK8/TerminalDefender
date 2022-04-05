@@ -32,30 +32,13 @@ int kb_logic(){
 int main(){
     struct Player p;
     int game = 1, gt = 0, wt = 20000;
-    char primitive_clear[20] = "\x1B[2J\x1B[H";
+    //char primitive_clear[20] = "\x1B[2J\x1B[H";
+    char primitive_clear[20] = "\x1B[2J";
     int at = 0; //Animation State TEMP
     bool paused = false, update_step = false;
     char input = 0;
 
-    /**Body
-    strcpy(p.head, " O\n");
-    strcpy(p.body, "-|-\n");
-    strcpy(p.leg1, "/|\n");
-    strcpy(p.leg2, " |\\\n");
-
-    //Starting Position(Top Left Of Player)
-    p.x = 0; //Spaces
-    p.y = 3; //NL
-
-    //HitBox
-    p.h = 3; //1 Height Unit is one newline
-    p.w = 3; //1 Width Unit is two spaces
-
-    //Movement Check
-    p.is_moving = false;**/
-
     p = create_player(" O\n", "-|-\n", "/|\n", " |\\\n", 0, 3, 3, 3, false);
-
 
     //Starting Conditions
     print_p2(p);
