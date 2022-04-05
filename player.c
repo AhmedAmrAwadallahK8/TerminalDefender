@@ -37,7 +37,7 @@ struct Player create_player(char head[], char body[], char leg1[], char leg2[], 
 //Left Right Movement
 void LR_movement(int spaces){
     for(int i = 0; i<spaces; i++){
-        printf(" ");
+        printf("  ");
     }
 }
 
@@ -70,4 +70,3 @@ void print_p2(struct Player p){
     LR_movement(p.x);
     printf("%s", p.leg2);
 }
-
