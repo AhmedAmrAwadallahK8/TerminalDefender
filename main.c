@@ -27,6 +27,8 @@ int kb_logic(){
     else{return in1; }
 }
 
+
+
 int main(){
     struct Player p;
     int game = 1, gt = 0, wt = 20000;
@@ -35,7 +37,7 @@ int main(){
     bool paused = false, update_step = false;
     char input = 0;
 
-    //Body
+    /**Body
     strcpy(p.head, " O\n");
     strcpy(p.body, "-|-\n");
     strcpy(p.leg1, "/|\n");
@@ -50,8 +52,9 @@ int main(){
     p.w = 3; //1 Width Unit is two spaces
 
     //Movement Check
-    p.is_moving = false;
+    p.is_moving = false;**/
 
+    p = create_player(" O\n", "-|-\n", "/|\n", " |\\\n", 0, 3, 3, 3, false);
 
 
     //Starting Conditions

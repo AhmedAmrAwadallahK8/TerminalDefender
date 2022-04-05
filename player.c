@@ -9,14 +9,26 @@ struct Player {
 };
 
 //TODO: 
-struct Player create_player(){
+struct Player create_player(char head[], char body[], char leg1[], char leg2[], int x, int y, int h, int w, bool is_moving){
     struct Player p;
+    //Body
+    strcpy(p.head, head);
+    strcpy(p.body, body);
+    strcpy(p.leg1, leg1);
+    strcpy(p.leg2, leg2);
+
+    //Starting Position(Top Left Of Player)
+    p.x = x; //Spaces
+    p.y = y; //NL
+
+    //HitBox
+    p.h = h; //1 Height Unit is one newline
+    p.w = w; //1 Width Unit is two spaces
+
+    //Movement Check
+    p.is_moving = is_moving;
     return p;
 }
-
-
-
-
 
 //Left Right Movement
 void LR_movement(int spaces){
@@ -32,6 +44,7 @@ void UD_movement(int nl){
     }
 }
 
+//Print State 1 of Player
 void print_p1(struct Player p){
     UD_movement(p.y);
     LR_movement(p.x);
@@ -42,6 +55,7 @@ void print_p1(struct Player p){
     printf("%s", p.leg1);
 }
 
+//Print State 2 of Player
 void print_p2(struct Player p){
     UD_movement(p.y);
     LR_movement(p.x);
