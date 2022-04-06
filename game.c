@@ -6,6 +6,7 @@
 #include <windows.h>
 #include "player.c"
 #include "spider.c"
+#include "render.c"
 
 //Game Time Logic
 int gt_logic(int gt){
@@ -14,11 +15,12 @@ int gt_logic(int gt){
     return gt;
 }
 
-//Keyboard Logic
+
 //Up: H, 72
 //Down: P, 80
 //Left: K, 75
 //Right: M, 77
+//Keyboard Logic
 int kb_logic(){
     char in1, in2;
     in1 = getch();
@@ -28,19 +30,29 @@ int kb_logic(){
     else{return in1; }
 }
 
+//Ends Game
+void game_end(){
+    clear_terminal();
+    printf("THANK YOU FOR PLAYING");
+    sleep(2);
+}
+
 void game_loop(){
     struct Player p;
     struct Spider s1;
     int game = 1, gt = 0, wt = 20000;
-    char primitive_clear[20] = "\x1B[2J\x1B[H";
+    
     bool paused = false, update_step = false;
     char input = 0;
 
+    //Create Entities
     p = create_player(" O\n", "-|-\n", "/|\n", " |\\\n", 0, 3, 3, 3, 0, false);
     s1 = create_spider("|\\O/\\\n", "/\\O/|\n", 3, 1, 1, 5, 0, true);
 
     //Starting Conditions
     print_p2(p);
+
+    //InitializeScreen
 
     //Game Start
     while(game == 1){
@@ -48,7 +60,8 @@ void game_loop(){
         while((input == 0) & (paused == false)){
             
             if(gt % wt == 0){
-                printf("%s", primitive_clear);
+                clear_terminal();
+
                 update_step = true;
 
                 //Draw Player Standing Still
@@ -57,7 +70,7 @@ void game_loop(){
                 
                 //Draw Player Movement
                 if((p.is_moving==true)){
-                    printf("%s", primitive_clear);
+                    clear_terminal();
                     if(p.at == 0){print_p1(p); p.at = 1; }
                     else if(p.at == 1){print_p2(p); p.at = 0; }
                     p.is_moving = false;
@@ -69,6 +82,9 @@ void game_loop(){
                 //Draw Spider Movement
                 if(s1.at == 0){print_s1(s1); s1.at = 1; }
                 else if(s1.at == 1){print_s2(s1); s1.at = 0; }
+
+                //Future Draw
+                //Refresh Screen(Draws All Entities)
             }
             //Keyboard Handling
             if(_kbhit()){input = kb_logic(); }
@@ -77,9 +93,6 @@ void game_loop(){
             gt = gt_logic(gt);
         }
 
-        //printf("\nInput: %c, %d", input, input);
-        //printf("\nSpaces %d", spaces);
-        //sleep(1);
         //Quit
         if(input == 'q'){
             game = 0;
@@ -107,21 +120,23 @@ void game_loop(){
 
         input = 0;
         while((input == 0) & (paused == true)){
+            //Game is paused Loop
             if(gt % wt == 0){
+                
             }
+
+            //Keyboard Handling
             if(_kbhit()){input = kb_logic(); }
+
+            //Game TIme Handling
             gt = gt_logic(gt);
         }
     }
-    
-    //End Game
-    printf("%s", primitive_clear);
-    printf("THANK YOU FOR PLAYING");
-    sleep(2);
-
 }
 
+//Starts Game
 void game_start(){
     game_loop();
 }
+
 

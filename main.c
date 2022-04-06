@@ -2,4 +2,5 @@
 
 int main(){
     game_start();
+    game_end();
 }
