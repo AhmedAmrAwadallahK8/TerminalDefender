@@ -37,7 +37,7 @@ struct Player create_player(char head[], char body[], char leg1[], char leg2[], 
 //Left Right Movement
 void LR_movement(int spaces){
     for(int i = 0; i<spaces; i++){
-        printf("  ");
+        printf(" ");
     }
 }
 
@@ -47,6 +47,38 @@ void UD_movement(int nl){
     for(int i = 0; i<nl; i++){
         printf("\n");
     }
+}
+
+//Move Position Up
+struct Player p_move_up(struct Player p){
+    p.y--;
+    if(p.y < 0){p.y = 0; }
+    p.is_moving = true;
+    return p;
+}
+
+//Move Position Down
+struct Player p_move_down(struct Player p){
+    p.y++;
+    if(p.y > 7){p.y = 7; }
+    p.is_moving = true;
+    return p;
+}
+
+//Move Position Left
+struct Player p_move_left(struct Player p){
+    p.x--;
+    if(p.x < 0){p.x = 0; }
+    p.is_moving = true;
+    return p;
+}
+
+//Move Position Right
+struct Player p_move_right(struct Player p){
+    p.x++;
+    if(p.x > 200){p.x = 200; }
+    p.is_moving = true;
+    return p;
 }
 
 //Print State 1 of Player

@@ -37,7 +37,7 @@ void game_loop(){
     char input = 0;
 
     p = create_player(" O\n", "-|-\n", "/|\n", " |\\\n", 0, 3, 3, 3, 0, false);
-    s1 = create_spider("|\\O/\\\n", "/\\O/|\n", 3, 3, 1, 5, 0, true);
+    s1 = create_spider("|\\O/\\\n", "/\\O/|\n", 3, 1, 1, 5, 0, true);
 
     //Starting Conditions
     print_p2(p);
@@ -48,8 +48,13 @@ void game_loop(){
         while((input == 0) & (paused == false)){
             
             if(gt % wt == 0){
-                //printf("%s", primitive_clear);
+                printf("%s", primitive_clear);
                 update_step = true;
+
+                //Draw Player Standing Still
+                if(p.at == 0){print_p1(p); }
+                else if(p.at == 1){print_p2(p); }
+                
                 //Move Player
                 if((p.is_moving==true)){
                     printf("%s", primitive_clear);
@@ -57,13 +62,16 @@ void game_loop(){
                     else if(p.at == 1){print_p2(p); p.at = 0; }
                     p.is_moving = false;
                 }
-                /**
+
+                
+
+                
                 //Move Spider Right (Temp Test)
                 s1.x++;
                 if(s1.x > 200){s1.x = 200; }
                 
                 if(s1.at == 0){print_s1(s1); s1.at = 1; }
-                else if(s1.at == 1){print_s2(s1); s1.at = 0; }**/
+                else if(s1.at == 1){print_s2(s1); s1.at = 0; }
             }
             if(_kbhit()){input = kb_logic(); }
             gt = gt_logic(gt);
@@ -78,27 +86,19 @@ void game_loop(){
         }
         //Left
         if(input == 'K'){
-            if(update_step == true){p.x--; }
-            if(p.x < 0){p.x = 0; }
-            p.is_moving = true;
+            if(update_step == true){p = p_move_left(p); }
         }
         //Right
         if(input == 'M'){
-            if(update_step == true){p.x++; }
-            if(p.x > 200){p.x = 200; }
-            p.is_moving = true;
+            if(update_step == true){p = p_move_right(p); }
         }
         //UP
         if(input == 'H'){
-            if(update_step == true){p.y--; }
-            if(p.y < 0){p.y = 0; }
-            p.is_moving = true;
+            if(update_step == true){p = p_move_up(p); }
         }
         //Down
         if(input == 'P'){
-            if(update_step == true){p.y++; }
-            if(p.y > 30){p.y = 30; }
-            p.is_moving = true;
+            if(update_step == true){p = p_move_down(p); }
         }
         //Pause
         if(input == 'p'){
