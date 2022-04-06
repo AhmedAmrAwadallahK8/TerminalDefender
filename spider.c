@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-//Player Base Fields
+//Spider Base Fields
 struct Spider {
     char body1[20], body2[20];
     int x, y, h, w, at;
@@ -17,7 +17,7 @@ struct Spider create_spider(char body1[], char body2[], int x, int y, int h, int
     strcpy(s.body1, body1);
     strcpy(s.body2, body2);
 
-    //Starting Position(Top Left Of Player)
+    //Starting Position(Top Left Of Spider)
     s.x = x; //Spaces
     s.y = y; //NL
 
@@ -30,6 +30,38 @@ struct Spider create_spider(char body1[], char body2[], int x, int y, int h, int
 
     //Movement Check
     s.is_moving = is_moving;
+    return s;
+}
+
+//Move Position Up
+struct Spider s_move_up(struct Spider s){
+    s.y--;
+    if(s.y < 0){s.y = 0; }
+    s.is_moving = true;
+    return s;
+}
+
+//Move Position Down
+struct Spider s_move_down(struct Spider s){
+    s.y++;
+    if(s.y > 7){s.y = 7; }
+    s.is_moving = true;
+    return s;
+}
+
+//Move Position Left
+struct Spider s_move_left(struct Spider s){
+    s.x--;
+    if(s.x < 0){s.x = 0; }
+    s.is_moving = true;
+    return s;
+}
+
+//Move Position Right
+struct Spider s_move_right(struct Spider s){
+    s.x++;
+    if(s.x > 200){s.x = 200; }
+    s.is_moving = true;
     return s;
 }
 

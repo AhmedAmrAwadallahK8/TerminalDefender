@@ -55,7 +55,7 @@ void game_loop(){
                 if(p.at == 0){print_p1(p); }
                 else if(p.at == 1){print_p2(p); }
                 
-                //Move Player
+                //Draw Player Movement
                 if((p.is_moving==true)){
                     printf("%s", primitive_clear);
                     if(p.at == 0){print_p1(p); p.at = 1; }
@@ -63,17 +63,17 @@ void game_loop(){
                     p.is_moving = false;
                 }
 
-                
-
-                
                 //Move Spider Right (Temp Test)
-                s1.x++;
-                if(s1.x > 200){s1.x = 200; }
+                s1 = s_move_right(s1);
                 
+                //Draw Spider Movement
                 if(s1.at == 0){print_s1(s1); s1.at = 1; }
                 else if(s1.at == 1){print_s2(s1); s1.at = 0; }
             }
+            //Keyboard Handling
             if(_kbhit()){input = kb_logic(); }
+
+            //Game Time
             gt = gt_logic(gt);
         }
 
