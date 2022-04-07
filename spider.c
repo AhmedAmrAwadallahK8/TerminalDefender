@@ -2,13 +2,17 @@
 
 #include <stdbool.h>
 #include <stdio.h>
+#include <string.h>
+#include "spider.h"
+#include "movement.h"
 
 //Spider Base Fields
-struct Spider {
+//PROBLEM NOTE: NEED TO LEARN HOW TO HAVE STRUCTS DEFINITIONS IN SOURCE FILES
+/**struct Spider {
     char body1[20], body2[20];
     int x, y, h, w, at;
     bool is_moving;
-};
+};**/
 
 //TODO: 
 struct Spider create_spider(char body1[], char body2[], int x, int y, int h, int w, int at, bool is_moving){

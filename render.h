@@ -3,14 +3,10 @@
 //Repeat until all entity drawn for line
 //Go to next line repeat above.
 //Repeat until last line reached on screen
-#include <stdio.h>
-#include "render.h"
 
-void clear_terminal(){
-    char primitive_clear[20] = "\x1B[2J\x1B[H";
-    printf("%s", primitive_clear);
-}
 
-void refresh_terminal(){
+//Clear Terminal and Reset Cursor
+void clear_terminal();
 
-}
+//Refresh Terminal Screen with Updated Game State
+void refresh_terminal();

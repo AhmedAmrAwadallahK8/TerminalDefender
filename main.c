@@ -1,4 +1,5 @@
-#include "game.c"
+//Update With Sourcefiles
+#include "game.h"
 
 int main(){
     game_start();

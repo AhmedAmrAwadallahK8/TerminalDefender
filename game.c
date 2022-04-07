@@ -4,9 +4,11 @@
 #include <string.h>
 #include <conio.h>
 #include <windows.h>
-#include "player.c"
-#include "spider.c"
-#include "render.c"
+
+#include "game.h"
+#include "player.h"
+#include "spider.h"
+#include "render.h"
 
 //Game Time Logic
 int gt_logic(int gt){

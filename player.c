@@ -1,12 +1,16 @@
 #include <stdbool.h>
 #include <stdio.h>
+#include <string.h>
+#include "player.h"
+#include "movement.h"
 
 //Player Base Fields
-struct Player {
+//PROBLEM NOTE: NEED TO LEARN HOW TO HAVE STRUCTS DEFINITIONS IN SOURCE FILES
+/**struct Player {
     char head[6], body[6], leg1[6], leg2[6];
     int x, y, h, w, at;
     bool is_moving;
-};
+};**/
 
 //TODO: 
 struct Player create_player(char head[], char body[], char leg1[], char leg2[], int x, int y, int h, int w, int at, bool is_moving){
@@ -31,22 +35,6 @@ struct Player create_player(char head[], char body[], char leg1[], char leg2[], 
     //Movement Check
     p.is_moving = is_moving;
     return p;
-}
-
-//??: Move This Function elsewhere
-//Left Right Movement
-void LR_movement(int spaces){
-    for(int i = 0; i<spaces; i++){
-        printf(" ");
-    }
-}
-
-//??: Move this function elsewhere
-//Up Down Movement
-void UD_movement(int nl){
-    for(int i = 0; i<nl; i++){
-        printf("\n");
-    }
 }
 
 //Move Position Up
