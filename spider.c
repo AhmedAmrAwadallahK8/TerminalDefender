@@ -34,6 +34,11 @@ struct Spider create_spider(char body1[], char body2[], int x, int y, int h, int
 
     //Movement Check
     s.is_moving = is_moving;
+
+    //Position Check
+    s.found_pos_y = false;
+    s.found_pos_x = false;
+
     return s;
 }
 

@@ -34,6 +34,11 @@ struct Player create_player(char head[], char body[], char leg1[], char leg2[], 
 
     //Movement Check
     p.is_moving = is_moving;
+
+    //Position Check
+    p.found_pos_y = false;
+    p.found_pos_x = false;
+    
     return p;
 }
 

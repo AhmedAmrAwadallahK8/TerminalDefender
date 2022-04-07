@@ -1,9 +1,10 @@
+#include <stdbool.h>
 
 //Spider Base Fields
 struct Spider {
     char body1[20], body2[20];
     int x, y, h, w, at;
-    bool is_moving;
+    bool is_moving, found_pos_y, found_pos_x;
 };
 
 //TODO: 

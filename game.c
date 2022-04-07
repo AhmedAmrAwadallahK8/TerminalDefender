@@ -46,10 +46,14 @@ void game_loop(){
     
     bool paused = false, update_step = false;
     char input = 0;
-
+    /**
     //Create Entities
     p = create_player(" O\n", "-|-\n", "/|\n", " |\\\n", 0, 3, 3, 3, 0, false);
-    s1 = create_spider("|\\O/\\\n", "/\\O/|\n", 3, 1, 1, 5, 0, true);
+    s1 = create_spider("|\\O/\\\n", "/\\O/|\n", 3, 1, 1, 5, 0, true);**/
+
+    //No New Line Version
+    p = create_player(" O", "-|-", "/|", " |\\", 0, 3, 3, 3, 0, false);
+    s1 = create_spider("|\\O/\\", "/\\O/|", 3, 1, 1, 5, 0, true);
 
     //Starting Conditions
     print_p2(p);
