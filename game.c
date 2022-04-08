@@ -46,14 +46,10 @@ void game_loop(){
     
     bool paused = false, update_step = false;
     char input = 0;
-    /**
-    //Create Entities
-    p = create_player(" O\n", "-|-\n", "/|\n", " |\\\n", 0, 3, 3, 3, 0, false);
-    s1 = create_spider("|\\O/\\\n", "/\\O/|\n", 3, 1, 1, 5, 0, true);**/
 
     //No New Line Version
     p = create_player(" O", "-|-", "/|", " |\\", 0, 3, 3, 3, 0, false);
-    s1 = create_spider("|\\O/\\", "/\\O/|", 3, 1, 1, 5, 0, true);
+    s1 = create_spider("|\\O/\\", "/\\O/|", 4, 3, 1, 5, 0, true);
 
     //Starting Conditions
     print_p2(p);
@@ -71,32 +67,7 @@ void game_loop(){
                 update_step = true;
 
                 refresh_terminal(p, s1);
-
-
-
-
-                /**
-                //Draw Player Standing Still
-                if(p.at == 0){print_p1(p); }
-                else if(p.at == 1){print_p2(p); }
-                
-                //Draw Player Movement
-                if((p.is_moving==true)){
-                    clear_terminal();
-                    if(p.at == 0){print_p1(p); p.at = 1; }
-                    else if(p.at == 1){print_p2(p); p.at = 0; }
-                    p.is_moving = false;
-                }
-
-                //Move Spider Right (Temp Test)
-                s1 = s_move_right(s1);
-                
-                //Draw Spider Movement
-                if(s1.at == 0){print_s1(s1); s1.at = 1; }
-                else if(s1.at == 1){print_s2(s1); s1.at = 0; }
-
-                //Future Draw
-                //Refresh Screen(Draws All Entities)**/
+                //s1 = s_move_right(s1);
             }
             //Keyboard Handling
             if(_kbhit()){input = kb_logic(); }
@@ -105,29 +76,26 @@ void game_loop(){
             gt = gt_logic(gt);
         }
 
-        //Quit
-        if(input == 'q'){
-            game = 0;
-        }
-        //Left
-        if(input == 'K'){
-            if(update_step == true){p = p_move_left(p); }
-        }
-        //Right
-        if(input == 'M'){
-            if(update_step == true){p = p_move_right(p); }
-        }
-        //UP
-        if(input == 'H'){
-            if(update_step == true){p = p_move_up(p); }
-        }
-        //Down
-        if(input == 'P'){
-            if(update_step == true){p = p_move_down(p); }
-        }
-        //Pause
-        if(input == 'p'){
-            paused = !paused;
+
+        switch(input){
+            case 'q': //Quit
+                game = 0;
+                break;
+            case 'K': //Left
+                if(update_step == true){p = p_move_left(p); }
+                break; 
+            case 'M': //Right
+                if(update_step == true){p = p_move_right(p); }
+                break;
+            case 'H': //UP
+                if(update_step == true){p = p_move_up(p); }
+                break;
+            case 'P': //Down
+                if(update_step == true){p = p_move_down(p); }
+                break;
+            case 'p': //Pause
+                paused = !paused;
+                break;
         }
 
         input = 0;
