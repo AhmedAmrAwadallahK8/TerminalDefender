@@ -2,7 +2,7 @@
 
 struct Player {
     char head[6], body[6], leg1[6], leg2[6];
-    int x, y, h, w, at;
+    int x, y, h, w, at, print_line;
     bool is_moving, found_pos_y, found_pos_x;
 };
 
@@ -28,6 +28,24 @@ struct Player p_move_left(struct Player p);
 
 //Move Position Right
 struct Player p_move_right(struct Player p);
+
+//Prints Head String to Terminal
+bool print_ph(char head[])
+
+//Prints Body String to Terminal
+bool print_pb(char body[])
+
+//Prints Leg Version 1 String to Terminal
+bool print_pl1(char leg1[])
+
+//Prints Leg Version 2 String to Terminal
+bool print_pl2(char leg2[])
+
+//Print player standing still
+bool print_p_still(struct Player p)
+
+//Print player moving
+bool print_p_moving(struct Player p)
 
 //Print State 1 of Player
 void print_p1(struct Player p);

@@ -5,6 +5,7 @@
 //Repeat until last line reached on screen
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
 
 #include "render.h"
 #include "player.h"
@@ -31,17 +32,65 @@ void clear_terminal(){
 }
 
 void refresh_terminal(struct Player p, struct Spider s){
-    bool entity_drawn = false;
+    bool entity_printed = false;
+    int print_len = 0;
     //Iterate By Line
     for(int i = 0; i <= term_height; i++){
         //Iterate By Space
         for(int j = 0; j<= term_width; j++){
+            entity_printed = false;
             //Player
-            if(i == p.y){p.found_pos_y = true; }
+            if(((i == p.y) | p.found_pos_y) & (j == p.x)){
+                p.found_pos_y = true; 
+                if(p.print_line == 0){
+                    //Draw Head
+                    print_ph(p.head);
+
+                    //Save Info for next line pass
+                    p.print_line++;
+
+                    //Move the x index j forward by how many characters were printed
+                    j += strlen(p.head);
+
+                    //Entity Is being Printed
+                    entity_printed = true;
+                }
+                else if(p.print_line == 1){
+                    //Draw Body
+                    print_pb(p.body);
+
+                    //Save Info for next line pass
+                    p.print_line++;
+
+                    //Move the x index j forward by how many characters were printed
+                    j += strlen(p.head);
+
+                    //Entity Is being Printed
+                    entity_printed = true;
+                }
+                else if(p.print_line == 2){
+                    //Draw Leg Logic
+                    if(p.is_moving==true){print_p_moving(p); }
+                    else{print_p_still(p); }
+
+                    //Fully Drawn Person Now. Don't reenter drawing conditional
+                    p.found_pos_y = false;
+
+                    //Reset for next draw
+                    p.print_line = 0;
+
+                    //Move the x index j forward by how many characters were printed
+                    j += strlen(p.head);
+
+                    //Entity Is being Printed
+                    entity_printed = true;
+                }
+            
+            }
 
             //Spider
 
-            if(!entity_drawn){new_space(); }
+            if(!entity_printed){new_space(); }
         }
         new_line();
     }
