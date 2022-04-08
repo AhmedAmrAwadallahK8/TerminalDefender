@@ -3,7 +3,7 @@
 struct Player {
     char head[6], body[6], leg1[6], leg2[6];
     int x, y, h, w, at;
-    bool is_moving, found_pos_y;
+    bool is_moving, found_pos_y, found_pos_x;
 };
 
 //TODO: 

@@ -37,12 +37,10 @@ void refresh_terminal(struct Player p, struct Spider s){
         //Iterate By Space
         for(int j = 0; j<= term_width; j++){
             //Player
-            if(i == p.y){
-            
-            }
+            if(i == p.y){p.found_pos_y = true; }
 
             //Spider
-            
+
             if(!entity_drawn){new_space(); }
         }
         new_line();
