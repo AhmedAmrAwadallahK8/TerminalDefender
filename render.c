@@ -33,7 +33,6 @@ void clear_terminal(){
 
 void refresh_terminal(struct Player p, struct Spider s){
     bool entity_printed = false;
-    int print_len = 0;
     //Iterate By Line
     for(int i = 0; i <= term_height; i++){
         //Iterate By Space
@@ -63,24 +62,21 @@ void refresh_terminal(struct Player p, struct Spider s){
                     p.print_line++;
 
                     //Move the x index j forward by how many characters were printed
-                    j += strlen(p.head);
+                    j += strlen(p.body);
 
                     //Entity Is being Printed
                     entity_printed = true;
                 }
                 else if(p.print_line == 2){
                     //Draw Leg Logic
-                    if(p.is_moving==true){print_p_moving(p); }
-                    else{print_p_still(p); }
+                    if(p.is_moving==true){print_p_moving(p); j += strlen(p.leg1); }
+                    else{print_p_still(p); j += strlen(p.leg2); }
 
                     //Fully Drawn Person Now. Don't reenter drawing conditional
                     p.found_pos_y = false;
 
                     //Reset for next draw
                     p.print_line = 0;
-
-                    //Move the x index j forward by how many characters were printed
-                    j += strlen(p.head);
 
                     //Entity Is being Printed
                     entity_printed = true;
@@ -89,6 +85,10 @@ void refresh_terminal(struct Player p, struct Spider s){
             }
 
             //Spider
+            if((j == s.x) & (i == s.y)){
+                if(s.is_moving==true){print_s_moving(s); j += strlen(s.body1); }
+                else{print_s_still(s); j += strlen(s.body2);}
+            }
 
             if(!entity_printed){new_space(); }
         }

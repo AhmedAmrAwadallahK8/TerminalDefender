@@ -30,25 +30,26 @@ struct Player p_move_left(struct Player p);
 struct Player p_move_right(struct Player p);
 
 //Prints Head String to Terminal
-bool print_ph(char head[])
+void print_ph(char head[]);
 
 //Prints Body String to Terminal
-bool print_pb(char body[])
+void print_pb(char body[]);
 
 //Prints Leg Version 1 String to Terminal
-bool print_pl1(char leg1[])
+void print_pl1(char leg1[]);
 
 //Prints Leg Version 2 String to Terminal
-bool print_pl2(char leg2[])
+void print_pl2(char leg2[]);
 
 //Print player standing still
-bool print_p_still(struct Player p)
+void print_p_still(struct Player p);
 
 //Print player moving
-bool print_p_moving(struct Player p)
+void print_p_moving(struct Player p);
 
 //Print State 1 of Player
 void print_p1(struct Player p);
 
 //Print State 2 of Player
 void print_p2(struct Player p);
+

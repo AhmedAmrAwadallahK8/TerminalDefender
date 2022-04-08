@@ -74,6 +74,29 @@ struct Spider s_move_right(struct Spider s){
     return s;
 }
 
+//Prints Body Version 1 String to Terminal
+void print_sb1(char body1[]){
+    printf("%s", body1);
+}
+
+//Prints Body Version 2 String to Terminal
+void print_sb2(char body2[]){
+    printf("%s", body2);
+}
+
+//Print Spider standing still
+void print_s_still(struct Spider s){
+    if(s.at == 0){print_sb1(s.body1); }
+    else if(s.at == 1){print_sb2(s.body2); }
+}
+
+//Print Spider moving
+void print_s_moving(struct Spider s){
+    if(s.at == 0){print_sb1(s.body1); s.at = 1; }
+    else if(s.at == 1){print_sb2(s.body2); s.at = 0; }
+    s.is_moving = false;
+}
+
 //Print State 1 of Spider
 void print_s1(struct Spider s){
     UD_movement(s.y);

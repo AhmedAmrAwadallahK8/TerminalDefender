@@ -70,6 +70,12 @@ void game_loop(){
 
                 update_step = true;
 
+                refresh_terminal(p, s1);
+
+
+
+
+                /**
                 //Draw Player Standing Still
                 if(p.at == 0){print_p1(p); }
                 else if(p.at == 1){print_p2(p); }
@@ -90,7 +96,7 @@ void game_loop(){
                 else if(s1.at == 1){print_s2(s1); s1.at = 0; }
 
                 //Future Draw
-                //Refresh Screen(Draws All Entities)
+                //Refresh Screen(Draws All Entities)**/
             }
             //Keyboard Handling
             if(_kbhit()){input = kb_logic(); }
