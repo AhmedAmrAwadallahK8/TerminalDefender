@@ -29,10 +29,10 @@ void print_sb1(char leg1[]);
 void print_sb2(char leg2[]);
 
 //Print Spider standing still
-void print_s_still(struct Spider s);
+void print_s_still(struct Spider *s);
 
 //Print Spider moving
-void print_s_moving(struct Spider s);
+void print_s_moving(struct Spider *s);
 
 //Print State 1 of Spider
 void print_s1(struct Spider s);

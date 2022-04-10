@@ -66,7 +66,7 @@ void game_loop(){
 
                 update_step = true;
 
-                refresh_terminal(p, s1);
+                refresh_terminal(&p, &s1);
                 //s1 = s_move_right(s1);
             }
             //Keyboard Handling

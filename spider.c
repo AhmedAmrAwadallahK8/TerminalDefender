@@ -85,16 +85,16 @@ void print_sb2(char body2[]){
 }
 
 //Print Spider standing still
-void print_s_still(struct Spider s){
-    if(s.at == 0){print_sb1(s.body1); }
-    else if(s.at == 1){print_sb2(s.body2); }
+void print_s_still(struct Spider *s){
+    if(s->at == 0){print_sb1(s->body1); }
+    else if(s->at == 1){print_sb2(s->body2); }
 }
 
 //Print Spider moving
-void print_s_moving(struct Spider s){
-    if(s.at == 0){print_sb1(s.body1); s.at = 1; }
-    else if(s.at == 1){print_sb2(s.body2); s.at = 0; }
-    s.is_moving = false;
+void print_s_moving(struct Spider *s){
+    if(s->at == 0){print_sb1(s->body1); s->at = 1; }
+    else if(s->at == 1){print_sb2(s->body2); s->at = 0; }
+    s->is_moving = false;
 }
 
 //Print State 1 of Spider

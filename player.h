@@ -42,10 +42,10 @@ void print_pl1(char leg1[]);
 void print_pl2(char leg2[]);
 
 //Print player standing still
-void print_p_still(struct Player p);
+void print_p_still(struct Player *p);
 
 //Print player moving
-void print_p_moving(struct Player p);
+void print_p_moving(struct Player *p);
 
 //Print State 1 of Player
 void print_p1(struct Player p);

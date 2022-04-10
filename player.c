@@ -102,17 +102,17 @@ void print_pl2(char leg2[]){
     printf("%s", leg2);
 }
 
-//Print player standing still
-void print_p_still(struct Player p){
-    if(p.at == 0){print_pl1(p.leg1); }
-    else if(p.at == 1){print_pl2(p.leg2); }
+//Print player standing still   
+void print_p_still(struct Player *p){
+    if(p->at == 0){print_pl1(p->leg1); }
+    else if(p->at == 1){print_pl2(p->leg2); }
 }
 
 //Print player moving
-void print_p_moving(struct Player p){
-    if(p.at == 0){print_pl1(p.leg1); p.at = 1; }
-    else if(p.at == 1){print_pl2(p.leg2); p.at = 0; }
-    p.is_moving = false;
+void print_p_moving(struct Player *p){
+    if(p->at == 0){print_pl1(p->leg1); p->at = 1; }
+    else if(p->at == 1){print_pl2(p->leg2); p->at = 0; }
+    p->is_moving = false;
 }
 
 //Print State 1 of Player
