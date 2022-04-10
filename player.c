@@ -115,6 +115,7 @@ void print_p_moving(struct Player *p){
     p->is_moving = false;
 }
 
+//Legacy Code
 //Print State 1 of Player
 void print_p1(struct Player p){
     UD_movement(p.y);
@@ -126,6 +127,7 @@ void print_p1(struct Player p){
     printf("%s", p.leg1);
 }
 
+//Legacy Code
 //Print State 2 of Player
 void print_p2(struct Player p){
     UD_movement(p.y);

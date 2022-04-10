@@ -64,7 +64,9 @@ void game_loop(){
             if(gt % wt == 0){
                 clear_terminal();
 
-                update_step = true;
+                update_step = true; //I think we have some continuity issues here
+
+                spider_ai(&s1);
 
                 refresh_terminal(&p, &s1);
                 //s1 = s_move_right(s1);

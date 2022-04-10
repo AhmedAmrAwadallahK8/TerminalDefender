@@ -11,16 +11,16 @@ struct Spider {
 struct Spider create_spider(char body1[], char body2[], int x, int y, int h, int w, int at, bool is_moving);
 
 //Move Position Up
-struct Spider s_move_up(struct Spider s);
+void s_move_up(struct Spider *s);
 
 //Move Position Down
-struct Spider s_move_down(struct Spider s);
+void s_move_down(struct Spider *s);
 
 //Move Position Left
-struct Spider s_move_left(struct Spider s);
+void s_move_left(struct Spider *s);
 
 //Move Position Right
-struct Spider s_move_right(struct Spider s);
+void s_move_right(struct Spider *s);
 
 //Prints Body Version 1 String to Terminal
 void print_sb1(char leg1[]);
@@ -33,6 +33,9 @@ void print_s_still(struct Spider *s);
 
 //Print Spider moving
 void print_s_moving(struct Spider *s);
+
+//Decide how spider moves next turn
+void spider_ai(struct Spider *s);
 
 //Print State 1 of Spider
 void print_s1(struct Spider s);
