@@ -77,8 +77,9 @@ void game_loop(){
                 update_step = true; //I think we have some continuity issues here
 
                 //Spider Next Move
-                spider_ai(&s[0]);
-                spider_ai(&s[1]);
+                //spider_ai(&s[0]);
+                //spider_ai(&s[1]);
+                move_spiders(s, spider_count);
 
                 refresh_terminal(&p, s, spider_count);
 
@@ -91,7 +92,7 @@ void game_loop(){
             gt = gt_logic(gt);
         }
 
-
+        //Input Conditionals
         switch(input){
             case 'q': //Quit Game
                 game = 0;
@@ -112,18 +113,17 @@ void game_loop(){
                 paused = !paused;
                 break;
         }
-
         input = 0;
+
+
         while((input == 0) & (paused == true)){
             //Game is paused Loop
-            if(gt % wt == 0){
-                
-            }
+            if(gt % wt == 0){}
 
             //Keyboard Handling
             if(_kbhit()){input = kb_logic(); }
 
-            //Game TIme Handling
+            //Game Time Handling
             gt = gt_logic(gt);
         }
     }

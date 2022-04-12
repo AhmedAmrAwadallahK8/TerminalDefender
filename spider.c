@@ -125,6 +125,12 @@ void spider_ai(struct Spider *s){
     }
 }
 
+void move_spiders(struct Spider s[], int spider_count){
+    for(int i = 0; i < spider_count; i++){
+        spider_ai(&s[i]);
+    }
+}
+
 //Legacy Code
 //Print State 1 of Spider
 void print_s1(struct Spider s){
