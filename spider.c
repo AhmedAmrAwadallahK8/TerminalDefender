@@ -109,19 +109,15 @@ void spider_ai(struct Spider *s){
     int move_dec = rand_num(0,4);
     switch(move_dec){
         case 0: //Don't Move
-            break;
+            return;
         case 1: //Move Left
-            s_move_left(s);
-            break;
+            return s_move_left(s);
         case 2: //Move Right
-            s_move_right(s);
-            break;
+            return s_move_right(s);
         case 3: //Move Up
-            s_move_up(s);
-            break;
+            return s_move_up(s);
         case 4: //Move Down
-            s_move_down(s);
-            break;
+            return s_move_down(s);        
     }
 }
 
@@ -129,6 +125,11 @@ void move_spiders(struct Spider s[], int spider_count){
     for(int i = 0; i < spider_count; i++){
         spider_ai(&s[i]);
     }
+}
+
+int print_spider(struct Spider *s){
+    if(s->is_moving==true){print_s_moving(s); return strlen(s->body1); }
+    else{print_s_still(s); return strlen(s->body2);}
 }
 
 //Legacy Code

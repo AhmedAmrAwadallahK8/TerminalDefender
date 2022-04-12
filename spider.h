@@ -40,6 +40,9 @@ void spider_ai(struct Spider *s);
 //Handles an array of spiders movement
 void move_spiders(struct Spider s[], int spider_count);
 
+//Spider Print Logic
+int print_spider(struct Spider *s);
+
 //Print State 1 of Spider
 void print_s1(struct Spider s);
 

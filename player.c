@@ -115,6 +115,41 @@ void print_p_moving(struct Player *p){
     p->is_moving = false;
 }
 
+int print_player(struct Player *p){
+    if(p->print_line == 0){
+        //Save Info for next line pass
+        p->print_line++;
+
+        //Draw Head
+        print_ph(p->head);
+
+        //Move the x index j forward by how many characters were printed
+        return strlen(p->head);
+    }
+    else if(p->print_line == 1){
+        //Save Info for next line pass
+        p->print_line++;
+
+        //Draw Body
+        print_pb(p->body);
+
+        //Move the x index j forward by how many characters were printed
+        return strlen(p->body);
+    }
+    else if(p->print_line == 2){
+        //Fully Drawn Person Now. Don't reenter drawing conditional
+        p->found_pos_y = false;
+
+        //Reset for next draw
+        p->print_line = 0;
+
+        //Draw Leg Logic
+        if(p->is_moving){print_p_moving(p); return strlen(p->leg1); }
+        else{print_p_still(p); return strlen(p->leg2); }
+    }
+    return 0;
+}
+
 //Legacy Code
 //Print State 1 of Player
 void print_p1(struct Player p){

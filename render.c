@@ -28,6 +28,7 @@ void print(char s[]){
 
 void clear_terminal(){
     char primitive_clear[20] = "\x1B[2J\x1B[H";
+    //char primitive_clear[20] = "cls";
     printf("%s", primitive_clear);
 }
 
@@ -41,55 +42,17 @@ void refresh_terminal(struct Player *p, struct Spider s[20], int spider_count){
             entity_printed = false;
             //Player
             if(((i == p->y) | p->found_pos_y) & (j == p->x)){
-                p->found_pos_y = true; 
-                if(p->print_line == 0){
-                    //Draw Head
-                    print_ph(p->head);
+                p->found_pos_y = true;
+                j += print_player(p);
 
-                    //Save Info for next line pass
-                    p->print_line++;
-
-                    //Move the x index j forward by how many characters were printed
-                    j += strlen(p->head);
-
-                    //Entity Is being Printed
-                    entity_printed = true;
-                }
-                else if(p->print_line == 1){
-                    //Draw Body
-                    print_pb(p->body);
-
-                    //Save Info for next line pass
-                    p->print_line++;
-
-                    //Move the x index j forward by how many characters were printed
-                    j += strlen(p->body);
-
-                    //Entity Is being Printed
-                    entity_printed = true;
-                }
-                else if(p->print_line == 2){
-                    //Draw Leg Logic
-                    if(p->is_moving==true){print_p_moving(p); j += strlen(p->leg1); }
-                    else{print_p_still(p); j += strlen(p->leg2); }
-
-                    //Fully Drawn Person Now. Don't reenter drawing conditional
-                    p->found_pos_y = false;
-
-                    //Reset for next draw
-                    p->print_line = 0;
-
-                    //Entity Is being Printed
-                    entity_printed = true;
-                }
-            
+                //Entity Is being Printed
+                entity_printed = true;
             }
 
-            //Spider
+            //Spiders
             for(int k = 0; k < spider_count; k++){
                 if((j == (&s[k])->x) & (i == (&s[k])->y)){
-                    if((&s[k])->is_moving==true){print_s_moving(&s[k]); j += strlen((&s[k])->body1); }
-                    else{print_s_still(&s[k]); j += strlen((&s[k])->body2);}
+                    j += print_spider(&s[k]);
 
                     //Entity Is being Printed
                     entity_printed = true;

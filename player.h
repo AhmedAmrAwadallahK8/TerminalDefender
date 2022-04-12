@@ -44,8 +44,11 @@ void print_pl2(char leg2[]);
 //Print player standing still
 void print_p_still(struct Player *p);
 
-//Print player moving
+//Alternates which leg is printed based on animation state
 void print_p_moving(struct Player *p);
+
+//Print Player Logic
+int print_player(struct Player *p);
 
 //Print State 1 of Player
 void print_p1(struct Player p);
