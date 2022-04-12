@@ -41,15 +41,20 @@ void game_end(){
 
 void game_loop(){
     struct Player p;
-    struct Spider s1;
-    int game = 1, gt = 0, wt = 20000;
+    struct Spider s[20];
+    int game = 1, gt = 0, wt = 20000, spider_count = 0;
     
     bool paused = false, update_step = false;
     char input = 0;
 
-    //No New Line Version
+    //Create Initial Entities
     p = create_player(" O", "-|-", "/|", " |\\", 0, 3, 3, 3, 0, false);
-    s1 = create_spider("|\\O/\\", "/\\O/|", 4, 3, 1, 5, 0, true);
+    //s1 = create_spider("|\\O/\\", "/\\O/|", 5, 4, 1, 5, 0, true);
+    //s2 = create_spider("|\\O/\\", "/\\O/|", 10, 4, 1, 5, 0, true);
+
+    s[0] = create_spider("|\\O/\\", "/\\O/|", 5, 4, 1, 5, 0, true);
+    s[1] = create_spider("|\\O/\\", "/\\O/|", 30, 4, 1, 5, 0, true);
+    spider_count = 2;
 
     //Starting Conditions
     print_p2(p);
@@ -66,10 +71,13 @@ void game_loop(){
 
                 update_step = true; //I think we have some continuity issues here
 
-                spider_ai(&s1);
+                //Spider Next Move
+                spider_ai(&s[0]);
+                spider_ai(&s[1]);
 
-                refresh_terminal(&p, &s1);
-                //s1 = s_move_right(s1);
+                refresh_terminal(&p, s, spider_count);
+
+                
             }
             //Keyboard Handling
             if(_kbhit()){input = kb_logic(); }
@@ -80,22 +88,22 @@ void game_loop(){
 
 
         switch(input){
-            case 'q': //Quit
+            case 'q': //Quit Game
                 game = 0;
                 break;
-            case 'K': //Left
+            case 'K': //Player Left
                 if(update_step == true){p = p_move_left(p); }
                 break; 
-            case 'M': //Right
+            case 'M': //Player Right
                 if(update_step == true){p = p_move_right(p); }
                 break;
-            case 'H': //UP
+            case 'H': //Player UP
                 if(update_step == true){p = p_move_up(p); }
                 break;
-            case 'P': //Down
+            case 'P': //Player Down
                 if(update_step == true){p = p_move_down(p); }
                 break;
-            case 'p': //Pause
+            case 'p': //Pause Game
                 paused = !paused;
                 break;
         }

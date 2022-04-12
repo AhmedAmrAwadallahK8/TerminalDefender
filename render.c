@@ -11,7 +11,7 @@
 #include "player.h"
 #include "spider.h"
 
-int term_height = 7;
+int term_height = 8;
 int term_width = 200;
 
 void new_line(){
@@ -31,7 +31,7 @@ void clear_terminal(){
     printf("%s", primitive_clear);
 }
 
-void refresh_terminal(struct Player *p, struct Spider *s){
+void refresh_terminal(struct Player *p, struct Spider s[20], int spider_count){
     bool entity_printed = false;
 
     //Iterate By Line
@@ -86,9 +86,14 @@ void refresh_terminal(struct Player *p, struct Spider *s){
             }
 
             //Spider
-            if((j == s->x) & (i == s->y)){
-                if(s->is_moving==true){print_s_moving(s); j += strlen(s->body1); }
-                else{print_s_still(s); j += strlen(s->body2);}
+            for(int k = 0; k < spider_count; k++){
+                if((j == (&s[k])->x) & (i == (&s[k])->y)){
+                    if((&s[k])->is_moving==true){print_s_moving(&s[k]); j += strlen((&s[k])->body1); }
+                    else{print_s_still(&s[k]); j += strlen((&s[k])->body2);}
+
+                    //Entity Is being Printed
+                    entity_printed = true;
+                }
             }
 
             if(!entity_printed){new_space(); }
