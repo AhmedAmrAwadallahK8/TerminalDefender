@@ -99,7 +99,6 @@ void print_s_moving(struct Spider *s){
 
 //Randomly generates a number in between specified lower and upper bound inclusive
 int rand_num(int lwr, int upr){
-    srand(time(0));
     return (rand() % (upr - lwr + 1)) + lwr;
 }
 

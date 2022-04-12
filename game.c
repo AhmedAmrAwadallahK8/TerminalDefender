@@ -4,6 +4,8 @@
 #include <string.h>
 #include <conio.h>
 #include <windows.h>
+#include <stdlib.h>
+#include <time.h>
 
 #include "game.h"
 #include "player.h"
@@ -46,6 +48,9 @@ void game_loop(){
     
     bool paused = false, update_step = false;
     char input = 0;
+
+    //Set Random Seed
+    srand(time(0));
 
     //Create Initial Entities
     p = create_player(" O", "-|-", "/|", " |\\", 0, 3, 3, 3, 0, false);

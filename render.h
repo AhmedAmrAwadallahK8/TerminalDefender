@@ -9,4 +9,6 @@
 void clear_terminal();
 
 //Refresh Terminal Screen with Updated Game State
+//Adding the correct parameters cause significant compile issues. Not sure why atm.
+//Also now I know header files don't require parameter lists but how illegal is this?
 void refresh_terminal();
