@@ -10,9 +10,9 @@
 #include "render.h"
 #include "player.h"
 #include "spider.h"
+#include "screen.h"
 
-int term_height = 8;
-int term_width = 200;
+
 
 void new_line(){
     printf("\n");

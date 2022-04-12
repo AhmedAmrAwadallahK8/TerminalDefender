@@ -1,8 +1,10 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
+
 #include "player.h"
 #include "movement.h"
+#include "screen.h"
 
 //Player Base Fields
 //PROBLEM NOTE: NEED TO LEARN HOW TO HAVE STRUCTS DEFINITIONS IN SOURCE FILES
@@ -48,7 +50,7 @@ struct Player create_player(char head[], char body[], char leg1[], char leg2[], 
 //Move Position Up
 struct Player p_move_up(struct Player p){
     p.y--;
-    if(p.y < 0){p.y = 0; }
+    if(p.y < 0){p.y = term_height; }
     p.is_moving = true;
     return p;
 }
@@ -56,7 +58,7 @@ struct Player p_move_up(struct Player p){
 //Move Position Down
 struct Player p_move_down(struct Player p){
     p.y++;
-    if(p.y > 7){p.y = 7; }
+    if(p.y > term_height){p.y = 0; }
     p.is_moving = true;
     return p;
 }
@@ -64,7 +66,7 @@ struct Player p_move_down(struct Player p){
 //Move Position Left
 struct Player p_move_left(struct Player p){
     p.x--;
-    if(p.x < 0){p.x = 0; }
+    if(p.x < 0){p.x = term_width; }
     p.is_moving = true;
     return p;
 }
@@ -72,7 +74,7 @@ struct Player p_move_left(struct Player p){
 //Move Position Right
 struct Player p_move_right(struct Player p){
     p.x++;
-    if(p.x > 200){p.x = 200; }
+    if(p.x > term_width){p.x = 0; }
     p.is_moving = true;
     return p;
 }

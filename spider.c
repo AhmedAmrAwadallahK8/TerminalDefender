@@ -9,6 +9,7 @@
 
 #include "spider.h"
 #include "movement.h"
+#include "screen.h"
 
 //Spider Base Fields
 //PROBLEM NOTE: NEED TO LEARN HOW TO HAVE STRUCTS DEFINITIONS IN SOURCE FILES
@@ -49,28 +50,28 @@ struct Spider create_spider(char body1[], char body2[], int x, int y, int h, int
 //Move Position Up
 void s_move_up(struct Spider *s){
     s->y--;
-    if(s->y < 0){s->y = 0; }
+    if(s->y < 0){s->y = term_height; }
     s->is_moving = true;
 }
 
 //Move Position Down
 void s_move_down(struct Spider *s){
     s->y++;
-    if(s->y > 7){s->y = 7; }
+    if(s->y > term_height){s->y = 0; }
     s->is_moving = true;
 }
 
 //Move Position Left
 void s_move_left(struct Spider *s){
     s->x--;
-    if(s->x < 0){s->x = 0; }
+    if(s->x < 0){s->x = term_width; }
     s->is_moving = true;
 }
 
 //Move Position Right
 void s_move_right(struct Spider *s){
     s->x++;
-    if(s->x > 200){s->x = 200; }
+    if(s->x > term_width){s->x = 0; }
     s->is_moving = true;
 }
 
