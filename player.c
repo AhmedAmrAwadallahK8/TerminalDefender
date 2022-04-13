@@ -15,27 +15,27 @@
 };**/
 
 //TODO: 
-struct Player create_player(char head[], char body[], char leg1[], char leg2[], int x, int y, int h, int w, int at, bool is_moving){
+struct Player create_player(int x, int y){
     struct Player p;
     //Body
-    strcpy(p.head, head);
-    strcpy(p.body, body);
-    strcpy(p.leg1, leg1);
-    strcpy(p.leg2, leg2);
+    strcpy(p.head, " O ");
+    strcpy(p.body, "-|-");
+    strcpy(p.leg1, "/| ");
+    strcpy(p.leg2, " |\\");
 
     //Starting Position(Top Left Of Player)
     p.x = x; //Spaces
     p.y = y; //NL
 
     //HitBox
-    p.h = h; //1 Height Unit is one newline
-    p.w = w; //1 Width Unit is two spaces
+    p.h = 3; //1 Height Unit is one newline
+    p.w = 3; //1 Width Unit is two spaces
 
     //Animation
-    p.at = at;
+    p.at = 0;
 
     //Movement Check
-    p.is_moving = is_moving;
+    p.is_moving = false;
 
     //Position Check
     p.found_pos_y = false;

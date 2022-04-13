@@ -53,12 +53,10 @@ void game_loop(){
     srand(time(0));
 
     //Create Initial Entities
-    p = create_player(" O", "-|-", "/|", " |\\", 0, 3, 3, 3, 0, false);
-    //s1 = create_spider("|\\O/\\", "/\\O/|", 5, 4, 1, 5, 0, true);
-    //s2 = create_spider("|\\O/\\", "/\\O/|", 10, 4, 1, 5, 0, true);
+    p = create_player(0, 3);
 
-    s[0] = create_spider("|\\O/\\", "/\\O/|", 5, 4, 1, 5, 0, true);
-    s[1] = create_spider("|\\O/\\", "/\\O/|", 30, 4, 1, 5, 0, true);
+    s[0] = create_spider(5, 4);
+    s[1] = create_spider(30, 4);
     spider_count = 2;
 
     //Starting Conditions
@@ -76,9 +74,6 @@ void game_loop(){
 
                 update_step = true; //I think we have some continuity issues here
 
-                //Spider Next Move
-                //spider_ai(&s[0]);
-                //spider_ai(&s[1]);
                 move_spiders(s, spider_count);
 
                 refresh_terminal(&p, s, spider_count);

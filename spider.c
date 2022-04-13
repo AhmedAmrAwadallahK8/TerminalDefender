@@ -20,25 +20,25 @@
 };**/
 
 //TODO: 
-struct Spider create_spider(char body1[], char body2[], int x, int y, int h, int w, int at, bool is_moving){
+struct Spider create_spider(int x, int y){
     struct Spider s;
     //Body
-    strcpy(s.body1, body1);
-    strcpy(s.body2, body2);
+    strcpy(s.body1, "|\\O/\\");
+    strcpy(s.body2, "/\\O/|");
 
     //Starting Position(Top Left Of Spider)
     s.x = x; //Spaces
     s.y = y; //NL
 
     //HitBox
-    s.h = h; //1 Height Unit is one newline
-    s.w = w; //1 Width Unit is two spaces
+    s.h = 1; //1 Height Unit is one newline
+    s.w = 5; //1 Width Unit is two spaces
 
     //Animation
-    s.at = at;
+    s.at = 0;
 
     //Movement Check
-    s.is_moving = is_moving;
+    s.is_moving = false;
 
     //Position Check
     s.found_pos_y = false;

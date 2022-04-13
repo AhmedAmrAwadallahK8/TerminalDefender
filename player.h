@@ -7,7 +7,7 @@ struct Player {
 };
 
 //TODO: 
-struct Player create_player(char head[], char body[], char leg1[], char leg2[], int x, int y, int h, int w, int at, bool is_moving);
+struct Player create_player(int x, int y);
 
 //??: Move This Function elsewhere
 //Left Right Movement

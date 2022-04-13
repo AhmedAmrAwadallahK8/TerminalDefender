@@ -8,7 +8,7 @@ struct Spider {
 };
 
 //TODO: 
-struct Spider create_spider(char body1[], char body2[], int x, int y, int h, int w, int at, bool is_moving);
+struct Spider create_spider(int x, int y);
 
 //Move Position Up
 void s_move_up(struct Spider *s);
