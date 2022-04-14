@@ -57,7 +57,7 @@ void game_loop(){
     //Create Initial Entities
     p = create_player(0, 3);
 
-    s[0] = create_spider(5, 4);
+    s[0] = create_spider(10, 4);
     s[1] = create_spider(30, 4);
     spider_count = 2;
 
