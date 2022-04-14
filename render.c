@@ -9,8 +9,10 @@
 
 #include "render.h"
 #include "player.h"
+#include "p_bullet.h"
 #include "spider.h"
 #include "screen.h"
+
 
 
 
@@ -32,7 +34,7 @@ void clear_terminal(){
     printf("%s", primitive_clear);
 }
 
-void refresh_terminal(struct Player *p, struct Spider s[20], int spider_count){
+void refresh_terminal(struct Player *p, struct Spider s[20], int spider_count, struct P_Bullet b[50], int bullet_count){
     bool entity_printed = false;
 
     //Iterate By Line
@@ -47,6 +49,16 @@ void refresh_terminal(struct Player *p, struct Spider s[20], int spider_count){
 
                 //Entity Is being Printed
                 entity_printed = true;
+            }
+
+            //Player Bullets
+            for(int k = 0; k<bullet_count; k++){
+                if((j == (&b[k])->x) & (i == (&b[k])->y)){
+                    j += print_bullet(&b[k]);
+
+                    //Entity Is being Printed
+                    entity_printed = true;
+                }
             }
 
             //Spiders

@@ -11,6 +11,7 @@
 #include "player.h"
 #include "spider.h"
 #include "render.h"
+#include "p_bullet.h"
 
 //Game Time Logic
 int gt_logic(int gt){
@@ -44,7 +45,8 @@ void game_end(){
 void game_loop(){
     struct Player p;
     struct Spider s[20];
-    int game = 1, gt = 0, wt = 20000, spider_count = 0;
+    struct P_Bullet b[50];
+    int game = 1, gt = 0, wt = 20000, spider_count = 0, bullet_count = 0;
     
     bool paused = false, update_step = false;
     char input = 0;
@@ -60,7 +62,7 @@ void game_loop(){
     spider_count = 2;
 
     //Starting Conditions
-    print_p2(p);
+    //print_p2(p);
 
     //InitializeScreen
 
@@ -73,10 +75,11 @@ void game_loop(){
                 clear_terminal();
 
                 update_step = true; //I think we have some continuity issues here
-
+                move_bullets(b, bullet_count);
                 move_spiders(s, spider_count);
 
-                refresh_terminal(&p, s, spider_count);
+
+                refresh_terminal(&p, s, spider_count, b, bullet_count);
 
                 
             }
@@ -107,6 +110,10 @@ void game_loop(){
             case 'p': //Pause Game
                 paused = !paused;
                 break;
+            case ' ': //Fire Bullet
+                b[bullet_count] = create_p_bullet(p.x, p.y);
+                bullet_count++;
+
         }
         input = 0;
 

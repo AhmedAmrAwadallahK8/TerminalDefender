@@ -43,6 +43,13 @@ struct Player create_player(int x, int y){
 
     //Info For Rendering
     p.print_line = 0;
+
+    //Direction Character is Facing
+    //0: Right
+    //1: Down
+    //2: Left
+    //3: Up
+    p.face_direc = 0;
     
     return p;
 }
@@ -51,6 +58,7 @@ struct Player create_player(int x, int y){
 struct Player p_move_up(struct Player p){
     p.y--;
     if(p.y < 0){p.y = term_height; }
+    p.face_direc = 3;
     p.is_moving = true;
     return p;
 }
@@ -59,6 +67,7 @@ struct Player p_move_up(struct Player p){
 struct Player p_move_down(struct Player p){
     p.y++;
     if(p.y > term_height){p.y = 0; }
+    p.face_direc = 1;
     p.is_moving = true;
     return p;
 }
@@ -67,6 +76,7 @@ struct Player p_move_down(struct Player p){
 struct Player p_move_left(struct Player p){
     p.x--;
     if(p.x < 0){p.x = term_width; }
+    p.face_direc = 2;
     p.is_moving = true;
     return p;
 }
@@ -75,6 +85,7 @@ struct Player p_move_left(struct Player p){
 struct Player p_move_right(struct Player p){
     p.x++;
     if(p.x > term_width){p.x = 0; }
+    p.face_direc = 0;
     p.is_moving = true;
     return p;
 }
