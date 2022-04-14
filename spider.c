@@ -10,6 +10,7 @@
 #include "spider.h"
 #include "movement.h"
 #include "screen.h"
+#include "td_rand.h"
 
 //Spider Base Fields
 //PROBLEM NOTE: NEED TO LEARN HOW TO HAVE STRUCTS DEFINITIONS IN SOURCE FILES
@@ -97,13 +98,6 @@ void print_s_moving(struct Spider *s){
     else if(s->at == 1){print_sb2(s->body2); s->at = 0; }
     s->is_moving = false;
 }
-
-//Randomly generates a number in between specified lower and upper bound inclusive
-int rand_num(int lwr, int upr){
-    return (rand() % (upr - lwr + 1)) + lwr;
-}
-
-
 
 //Decides how spider moves next turn
 void spider_ai(struct Spider *s){

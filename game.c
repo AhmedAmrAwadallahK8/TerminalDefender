@@ -75,6 +75,8 @@ void game_loop(){
                 clear_terminal();
 
                 update_step = true; //I think we have some continuity issues here
+
+                //Move NPCs
                 move_bullets(b, bullet_count);
                 move_spiders(s, spider_count);
 
