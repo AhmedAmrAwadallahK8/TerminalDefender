@@ -26,7 +26,7 @@ int print_bullet(struct P_Bullet *b){
 }
 
 void bullet_ai(struct P_Bullet *b){
-    b->x++;
+    b->x+=2;
 }
 
 void move_bullets(struct P_Bullet b[], int bullet_count){

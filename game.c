@@ -13,6 +13,7 @@
 #include "render.h"
 #include "p_bullet.h"
 
+
 //Game Time Logic
 int gt_logic(int gt){
     gt++;
@@ -45,7 +46,9 @@ void game_end(){
 void game_loop(){
     struct Player p;
     struct Spider s[20];
-    struct P_Bullet b[50];
+    int s_alive[20] = {0};
+    struct P_Bullet b[5];
+    int pb_alive[50] = {0};
     int game = 1, gt = 0, wt = 20000, spider_count = 0, bullet_count = 0;
     
     bool paused = false, update_step = false;
@@ -58,7 +61,9 @@ void game_loop(){
     p = create_player(0, 3);
 
     s[0] = create_spider(10, 4);
+    s_alive[0] = 1;
     s[1] = create_spider(30, 4);
+    s_alive[1] = 1;
     spider_count = 2;
 
     //Starting Conditions

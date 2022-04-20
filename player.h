@@ -1,3 +1,6 @@
+#ifndef PLAYER_H
+#define PLAYER_H
+
 #include <stdbool.h>
 
 struct Player {
@@ -56,3 +59,4 @@ void print_p1(struct Player p);
 //Print State 2 of Player
 void print_p2(struct Player p);
 
+#endif

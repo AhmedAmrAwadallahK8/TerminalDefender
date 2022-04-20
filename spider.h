@@ -1,3 +1,6 @@
+#ifndef SPIDER_H
+#define SPIDER_H
+
 #include <stdbool.h>
 
 //Spider Base Fields
@@ -48,3 +51,5 @@ void print_s1(struct Spider s);
 
 //Print State 2 of Spider
 void print_s2(struct Spider s);
+
+#endif
