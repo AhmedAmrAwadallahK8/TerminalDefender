@@ -47,7 +47,7 @@ void game_loop(){
     struct Player p;
     struct Spider s[20];
     int s_alive[20] = {0};
-    struct P_Bullet b[5];
+    struct P_Bullet b[50];
     int pb_alive[50] = {0};
     int game = 1, gt = 0, wt = 20000, spider_count = 0, bullet_count = 0;
     
