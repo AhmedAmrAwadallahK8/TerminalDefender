@@ -15,6 +15,9 @@ struct P_Bullet * create_pb_ptr(int x, int y);
 //Frees memory associated with p_bullet
 void free_p_bullet(struct P_Bullet *b);
 
+//Bullet move logic
+void bullet_ai(struct P_Bullet *b);
+
 int print_bullet(struct P_Bullet *b);
 
 void move_bullets(struct P_Bullet b[], int bullet_count);

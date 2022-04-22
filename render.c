@@ -12,6 +12,7 @@
 #include "p_bullet.h"
 #include "spider.h"
 #include "screen.h"
+#include "p_bullets.h"
 
 
 
@@ -34,8 +35,10 @@ void clear_terminal(){
     printf("%s", primitive_clear);
 }
 
-void refresh_terminal(struct Player *p, struct Spider s[20], int spider_count, struct P_Bullet b[50], int bullet_count){
+void refresh_terminal(struct Player *p, struct Spider s[20], int spider_count, struct P_Bullets * pbs){
     bool entity_printed = false;
+    //struct P_Bullet * b[MAX_BULLETS] = pbs->ptr_arr; Temp REMOVE
+    //int bs[MAX_BULLETS] = pbs->state_arr; TEMP REMOVE
 
     //Iterate By Line
     for(int i = 0; i <= term_height; i++){
@@ -52,12 +55,14 @@ void refresh_terminal(struct Player *p, struct Spider s[20], int spider_count, s
             }
 
             //Player Bullets
-            for(int k = 0; k<bullet_count; k++){
-                if((j == (&b[k])->x) & (i == (&b[k])->y)){
-                    j += print_bullet(&b[k]);
+            for(int k = 0; k<MAX_BULLETS; k++){
+                if(pbs->state_arr[k] > 0){
+                    if((j == pbs->ptr_arr[k]->x) & (i == pbs->ptr_arr[k]->y)){
+                        j += print_bullet(pbs->ptr_arr[k]);
 
-                    //Entity Is being Printed
-                    entity_printed = true;
+                        //Entity Is being Printed
+                        entity_printed = true;
+                    }
                 }
             }
 

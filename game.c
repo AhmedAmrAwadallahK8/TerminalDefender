@@ -12,6 +12,7 @@
 #include "spider.h"
 #include "render.h"
 #include "p_bullet.h"
+#include "p_bullets.h"
 
 
 //Game Time Logic
@@ -47,8 +48,7 @@ void game_loop(){
     struct Player p;
     struct Spider s[20];
     int s_alive[20] = {0};
-    struct P_Bullet b[50];
-    int pb_alive[50] = {0};
+    struct P_Bullets pbs = create_p_bullets();
     int game = 1, gt = 0, wt = 20000, spider_count = 0, bullet_count = 0;
     
     bool paused = false, update_step = false;
@@ -82,11 +82,12 @@ void game_loop(){
                 update_step = true; //I think we have some continuity issues here
 
                 //Move NPCs
-                move_bullets(b, bullet_count);
+                //Move Bullet Problem: Untested
+                move_p_bullets(&pbs);
                 move_spiders(s, spider_count);
 
-
-                refresh_terminal(&p, s, spider_count, b, bullet_count);
+                //Move bullets needs to be ravamped in refresh terminal
+                refresh_terminal(&p, s, spider_count, &pbs);
 
                 
             }
@@ -118,7 +119,8 @@ void game_loop(){
                 paused = !paused;
                 break;
             case ' ': //Fire Bullet
-                b[bullet_count] = create_p_bullet(p.x, p.y);
+                add_p_bullet(&pbs, &p);
+
                 bullet_count++;
 
         }

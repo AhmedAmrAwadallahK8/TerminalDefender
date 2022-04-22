@@ -1,4 +1,6 @@
 #include <stdlib.h>
+#include <memory.h>
+#include <stdio.h>
 
 #include "p_bullets.h"
 #include "p_bullet.h"
@@ -16,13 +18,13 @@ struct P_Bullets create_p_bullets(){
 }
 
 //Adds new bullet to array
-void add_bullet(struct P_Bullets *pbs, struct Player *p){
+void add_p_bullet(struct P_Bullets *pbs, struct Player *p){
     //Note does not handle situations where bullets exceed the array size
     pbs->running_tot++;
     pbs->bullet_count++;
     
     int i = 0;
-    while((pbs->state_arr[i] == 0) && (i < MAX_BULLETS)){
+    while((pbs->state_arr[i] > 0) && (i < MAX_BULLETS)){
         i++;
     }
     if(i != MAX_BULLETS){
@@ -37,7 +39,7 @@ void add_bullet(struct P_Bullets *pbs, struct Player *p){
 }
 
 //Remove bullet from game
-void rem_bullet(struct P_Bullets *pbs, struct P_Bullet *pb){
+void rem_p_bullet(struct P_Bullets *pbs, struct P_Bullet *pb){
     struct P_Bullet *curr_pb = NULL;
     for(int i = 0; i < MAX_BULLETS; i++){
         curr_pb = pbs->ptr_arr[i];
@@ -45,6 +47,14 @@ void rem_bullet(struct P_Bullets *pbs, struct P_Bullet *pb){
             free_p_bullet(pb);
             pbs->state_arr[i] = 0;
             pbs->ptr_arr[i] = NULL;
+            pbs->bullet_count--;
         }
+    }
+}
+
+//Moves all live bullets
+void move_p_bullets(struct P_Bullets *pbs){
+    for(int i = 0; i < MAX_BULLETS; i++){
+        if(pbs->state_arr[i] > 0){bullet_ai(pbs->ptr_arr[i]); }
     }
 }

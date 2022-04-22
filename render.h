@@ -4,6 +4,7 @@
 
 #include "player.h"
 #include "p_bullet.h"
+#include "p_bullets.h"
 #include "spider.h"
 
 
@@ -18,8 +19,6 @@
 void clear_terminal();
 
 //Refresh Terminal Screen with Updated Game State
-//Adding the correct parameters cause significant compile issues. Not sure why atm.
-//Also now I know header files don't require parameter lists but how illegal is this?
-void refresh_terminal(struct Player *p, struct Spider s[20], int spider_count, struct P_Bullet b[50], int bullet_count);
+void refresh_terminal(struct Player *p, struct Spider s[20], int spider_count, struct P_Bullets * pbs);
 
 #endif
