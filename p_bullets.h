@@ -2,12 +2,13 @@
 #define P_BULLETS_H
 
 #include "P_Bullet.h";
+const int MAX_BULLETS = 50;
 
 struct P_Bullets{
-    struct P_Bullet ptr_arr[50] = {0};
-    int state_arr[50] = {0};
-    int bullet_count = 0;
-    int running_tot = 0;
+    struct P_Bullet *ptr_arr[MAX_BULLETS];
+    int state_arr[MAX_BULLETS];
+    int bullet_count;
+    int running_tot;
 };
 
 #endif
