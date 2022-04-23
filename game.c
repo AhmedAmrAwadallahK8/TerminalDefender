@@ -10,9 +10,11 @@
 #include "game.h"
 #include "player.h"
 #include "spider.h"
+#include "spiders.h"
 #include "render.h"
 #include "p_bullet.h"
 #include "p_bullets.h"
+
 
 
 //Game Time Logic
@@ -46,10 +48,9 @@ void game_end(){
 
 void game_loop(){
     struct Player p;
-    struct Spider s[20];
-    int s_alive[20] = {0};
+    struct Spiders spids = create_spiders();
     struct P_Bullets pbs = create_p_bullets();
-    int game = 1, gt = 0, wt = 20000, spider_count = 0, bullet_count = 0;
+    int game = 1, gt = 0, wt = 20000;
     
     bool paused = false, update_step = false;
     char input = 0;
@@ -60,11 +61,8 @@ void game_loop(){
     //Create Initial Entities
     p = create_player(0, 3);
 
-    s[0] = create_spider(10, 4);
-    s_alive[0] = 1;
-    s[1] = create_spider(30, 4);
-    s_alive[1] = 1;
-    spider_count = 2;
+    add_spider(&spids, 10, 4);
+    add_spider(&spids, 30, 4);
 
     //Starting Conditions
     //print_p2(p);
@@ -84,10 +82,10 @@ void game_loop(){
                 //Move NPCs
                 //Move Bullet Problem: Untested
                 move_p_bullets(&pbs);
-                move_spiders(s, spider_count);
+                move_spiders(&spids); //Replace
 
                 //Move bullets needs to be ravamped in refresh terminal
-                refresh_terminal(&p, s, spider_count, &pbs);
+                refresh_terminal(&p, &spids, &pbs); //Change input to just be spids
 
                 
             }
@@ -120,9 +118,6 @@ void game_loop(){
                 break;
             case ' ': //Fire Bullet
                 add_p_bullet(&pbs, &p);
-
-                bullet_count++;
-
         }
         input = 0;
 

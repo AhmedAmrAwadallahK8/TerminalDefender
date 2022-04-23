@@ -21,31 +21,35 @@
 };**/
 
 //TODO: 
-struct Spider create_spider(int x, int y){
-    struct Spider s;
+struct Spider * create_spider(int x, int y){
+    struct Spider * s = malloc(sizeof(struct Spider));
     //Body
-    strcpy(s.body1, "|\\O/\\");
-    strcpy(s.body2, "/\\O/|");
+    strcpy(s->body1, "|\\O/\\");
+    strcpy(s->body2, "/\\O/|");
 
     //Starting Position(Top Left Of Spider)
-    s.x = x; //Spaces
-    s.y = y; //NL
+    s->x = x; //Spaces
+    s->y = y; //NL
 
     //HitBox
-    s.h = 1; //1 Height Unit is one newline
-    s.w = 5; //1 Width Unit is two spaces
+    s->h = 1; //1 Height Unit is one newline
+    s->w = 5; //1 Width Unit is two spaces
 
     //Animation
-    s.at = 0;
+    s->at = 0;
 
     //Movement Check
-    s.is_moving = false;
+    s->is_moving = false;
 
     //Position Check
-    s.found_pos_y = false;
-    s.found_pos_x = false;
+    s->found_pos_y = false;
+    s->found_pos_x = false;
 
     return s;
+}
+
+void free_spider(struct Spider * s){
+    free(s);
 }
 
 //Move Position Up
@@ -116,11 +120,6 @@ void spider_ai(struct Spider *s){
     }
 }
 
-void move_spiders(struct Spider s[], int spider_count){
-    for(int i = 0; i < spider_count; i++){
-        spider_ai(&s[i]);
-    }
-}
 
 int print_spider(struct Spider *s){
     if(s->is_moving==true){print_s_moving(s); return strlen(s->body1); }

@@ -6,6 +6,7 @@
 #include "p_bullet.h"
 #include "p_bullets.h"
 #include "spider.h"
+#include "spiders.h"
 
 
 //Go line by line,
@@ -19,6 +20,6 @@
 void clear_terminal();
 
 //Refresh Terminal Screen with Updated Game State
-void refresh_terminal(struct Player *p, struct Spider s[20], int spider_count, struct P_Bullets * pbs);
+void refresh_terminal(struct Player *p, struct Spiders * spids, struct P_Bullets * pbs);
 
 #endif

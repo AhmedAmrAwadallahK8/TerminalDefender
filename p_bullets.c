@@ -32,7 +32,7 @@ void add_p_bullet(struct P_Bullets *pbs, struct Player *p){
         pbs->ptr_arr[i] = create_pb_ptr(p->x, p->y);
     }
     else{ //In the futuer I want else to just remove the oldest bullet and replace it with the new one
-        printf("\nLinkedList Error: Index out of bounds"); exit(EXIT_FAILURE);
+        printf("\nP_Bullets Error: Index out of bounds"); exit(EXIT_FAILURE);
     }
 
 
