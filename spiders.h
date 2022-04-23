@@ -18,6 +18,9 @@ struct Spiders create_spiders();
 //Adds spider to the list, if full throws error
 void add_spider(struct Spiders * spids, int x, int y);
 
+//Adds spider to list with random start position
+void add_spider_rand(struct Spiders * spids);
+
 //Handles an array of spiders movement
 void move_spiders(struct Spiders * spids);
 

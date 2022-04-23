@@ -63,6 +63,7 @@ void game_loop(){
 
     add_spider(&spids, 10, 4);
     add_spider(&spids, 30, 4);
+    add_spider_rand(&spids);
 
     //Starting Conditions
     //print_p2(p);
