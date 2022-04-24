@@ -81,9 +81,12 @@ void game_loop(){
                 move_p_bullets(&pbs);
                 move_spiders(&spids); 
 
-                detect_collision(&p, &spids, &pbs);
+                
 
                 refresh_terminal(&p, &spids, &pbs); 
+                printf("\nCollision Start");
+                detect_collision(&p, &spids, &pbs);
+                printf("\nCollision Done");
 
                 
             }

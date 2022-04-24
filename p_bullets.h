@@ -4,7 +4,7 @@
 #include "p_bullet.h"
 #include "player.h"
 
-#define MAX_BULLETS 50
+#define MAX_BULLETS 3
 
 struct P_Bullets{
     struct P_Bullet *ptr_arr[MAX_BULLETS];

@@ -76,7 +76,7 @@ void detect_collision(struct Player * p, struct Spiders * spids, struct P_Bullet
         collision = bullet_edge(curr_pb);
         if(collision){rem_p_bullet(pbs, curr_pb); continue; }
 
-        for(int j = 0; i < MAX_SPIDERS; j++){
+        for(int j = 0; j < MAX_SPIDERS; j++){
             if(spids->state_arr[j] == 0){continue; }
             curr_s = spids->ptr_arr[j];
             collision = bullet_spider(curr_pb, curr_s);
