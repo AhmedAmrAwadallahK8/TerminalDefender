@@ -14,6 +14,7 @@
 #include "render.h"
 #include "p_bullet.h"
 #include "p_bullets.h"
+#include "collision.h"
 
 
 
@@ -46,6 +47,7 @@ void game_end(){
     sleep(2);
 }
 
+//Steady State of Game
 void game_loop(){
     struct Player p;
     struct Spiders spids = create_spiders();
@@ -61,14 +63,9 @@ void game_loop(){
     //Create Initial Entities
     p = create_player(0, 3);
 
-    add_spider(&spids, 10, 4);
+    add_spider(&spids, 20, 4);
     add_spider(&spids, 30, 4);
-    add_spider_rand(&spids);
-
-    //Starting Conditions
-    //print_p2(p);
-
-    //InitializeScreen
+    //add_spider_rand(&spids);
 
     //Game Start
     while(game == 1){
@@ -81,12 +78,12 @@ void game_loop(){
                 update_step = true; //I think we have some continuity issues here
 
                 //Move NPCs
-                //Move Bullet Problem: Untested
                 move_p_bullets(&pbs);
-                move_spiders(&spids); //Replace
+                move_spiders(&spids); 
 
-                //Move bullets needs to be ravamped in refresh terminal
-                refresh_terminal(&p, &spids, &pbs); //Change input to just be spids
+                detect_collision(&p, &spids, &pbs);
+
+                refresh_terminal(&p, &spids, &pbs); 
 
                 
             }
