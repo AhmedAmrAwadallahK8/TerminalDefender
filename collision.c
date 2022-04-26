@@ -13,7 +13,7 @@
 #include "td_math.h"
 
 
-
+//Checks if two rectangles overlap. If their overlap area is greater than zero return true, false otherwise
 bool rect_overlap(int ax1, int ay1, int ax2, int ay2, int bx1, int by1, int bx2, int by2){
     int max_x1, min_x2, max_y1, min_y2;
     max_x1 = max(ax1, bx1);
@@ -30,6 +30,7 @@ bool bullet_spider(struct P_Bullet * pb, struct Spider * s){
     return rect_overlap(pb->x, pb->y, pb->x+pb->w, pb->y+pb->h, s->x, s->y,s->x+s->w,s->y+s->h);
 }
 
+//Check if bullet collided with edge of screen
 bool bullet_edge(struct P_Bullet * pb){
     if(pb->x > term_width){return true; }
     return false;

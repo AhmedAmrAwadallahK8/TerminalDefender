@@ -6,7 +6,7 @@
 #include "p_bullets.h"
 #include "player.h"
 
-//Main Collision Function
+//Detects and handles collision between all entity types in the TD game
 void detect_collision(struct Player * p, struct Spiders * spids, struct P_Bullets * pbs);
 
 #endif

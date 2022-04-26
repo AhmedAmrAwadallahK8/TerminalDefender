@@ -14,7 +14,7 @@
     bool is_moving;
 };**/
 
-//TODO: 
+//Creates a player struct
 struct Player create_player(int x, int y){
     struct Player p;
     //Body
@@ -90,10 +90,6 @@ struct Player p_move_right(struct Player p){
     return p;
 }
 
-
-
-
-
 //Prints Head String to Terminal
 void print_ph(char head[]){
     printf("%s", head);
@@ -128,6 +124,7 @@ void print_p_moving(struct Player *p){
     p->is_moving = false;
 }
 
+//Print entire player
 int print_player(struct Player *p){
     if(p->print_line == 0){
         //Save Info for next line pass
@@ -161,28 +158,4 @@ int print_player(struct Player *p){
         else{print_p_still(p); return strlen(p->leg2); }
     }
     return 0;
-}
-
-//Legacy Code
-//Print State 1 of Player
-void print_p1(struct Player p){
-    UD_movement(p.y);
-    LR_movement(p.x);
-    printf("%s", p.head);
-    LR_movement(p.x);
-    printf("%s", p.body);
-    LR_movement(p.x);
-    printf("%s", p.leg1);
-}
-
-//Legacy Code
-//Print State 2 of Player
-void print_p2(struct Player p){
-    UD_movement(p.y);
-    LR_movement(p.x);
-    printf("%s", p.head);
-    LR_movement(p.x);
-    printf("%s", p.body);
-    LR_movement(p.x);
-    printf("%s", p.leg2);
 }
