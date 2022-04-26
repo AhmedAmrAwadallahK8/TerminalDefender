@@ -10,20 +10,9 @@
 #include "p_bullet.h"
 #include "p_bullets.h"
 #include "player.h"
+#include "td_math.h"
 
-int max(int x, int y){
-    if(x > y){
-        return x;
-    }
-    return y;
-}
 
-int min(int x, int y){
-    if(x < y){
-        return x;
-    }
-    return y;
-}
 
 bool rect_overlap(int ax1, int ay1, int ax2, int ay2, int bx1, int by1, int bx2, int by2){
     int max_x1, min_x2, max_y1, min_y2;
