@@ -63,8 +63,8 @@ void game_loop(){
     //Create Initial Entities
     p = create_player(0, 3);
 
-    add_spider(&spids, 20, 4);
-    add_spider(&spids, 30, 4);
+    add_spider(&spids, 40, 4);
+    add_spider(&spids, 60, 4);
     //add_spider_rand(&spids);
 
     //Game Start

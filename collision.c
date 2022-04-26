@@ -25,7 +25,7 @@ bool rect_overlap(int ax1, int ay1, int ax2, int ay2, int bx1, int by1, int bx2,
     
 }
 
-//Check if bullet collided with anything
+//Check if bullet collided with spider
 bool bullet_spider(struct P_Bullet * pb, struct Spider * s){
     return rect_overlap(pb->x, pb->y, pb->x+pb->w, pb->y+pb->h, s->x, s->y,s->x+s->w,s->y+s->h);
 }
@@ -37,7 +37,7 @@ bool bullet_edge(struct P_Bullet * pb){
 }
 
 //Check if spider entity collided with player
-void spider_check(){
+void spider_player(){
 
 }
 
