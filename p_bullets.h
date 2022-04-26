@@ -13,16 +13,16 @@ struct P_Bullets{
     int running_tot;
 };
 
-//Creates and initializes the P_Bullets struct
+//Create P_Bullets struct
 struct P_Bullets create_p_bullets();
 
-//Adds new p_bullet to array
+//Adds new bullet to the data structure
 void add_p_bullet(struct P_Bullets *pbs, struct Player *p);
 
-//Removes p_bullet from game
+//Removes bullet from the data structure
 void rem_p_bullet(struct P_Bullets *pbs, struct P_Bullet *pb);
 
-//Moves all live bullets
+//Passes all bullets to the bullet ai function
 void move_p_bullets(struct P_Bullets *pbs);
 
 

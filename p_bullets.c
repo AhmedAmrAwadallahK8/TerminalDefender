@@ -6,6 +6,7 @@
 #include "p_bullet.h"
 #include "player.h"
 
+//Create P_Bullets struct
 struct P_Bullets create_p_bullets(){
     struct P_Bullets pbs;
     pbs.bullet_count = 0;
@@ -17,7 +18,7 @@ struct P_Bullets create_p_bullets(){
     return pbs;
 }
 
-//Adds new bullet to array
+//Adds new bullet to the data structure
 void add_p_bullet(struct P_Bullets *pbs, struct Player *p){
     //Note does not handle situations where bullets exceed the array size
     pbs->running_tot++;
@@ -38,7 +39,7 @@ void add_p_bullet(struct P_Bullets *pbs, struct Player *p){
 
 }
 
-//Remove bullet from game
+//Removes bullet from the data structure
 void rem_p_bullet(struct P_Bullets *pbs, struct P_Bullet *pb){
     struct P_Bullet *curr_pb = NULL;
     for(int i = 0; i < MAX_BULLETS; i++){
@@ -52,7 +53,7 @@ void rem_p_bullet(struct P_Bullets *pbs, struct P_Bullet *pb){
     }
 }
 
-//Moves all live bullets
+//Passes all bullets to the bullet ai function
 void move_p_bullets(struct P_Bullets *pbs){
     for(int i = 0; i < MAX_BULLETS; i++){
         if(pbs->state_arr[i] > 0){bullet_ai(pbs->ptr_arr[i]); }
