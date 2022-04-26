@@ -17,29 +17,30 @@
 
 
 
-
+//Print newline
 void new_line(){
     printf("\n");
 }
 
+//Print space
 void new_space(){
     printf(" ");
 }
 
+//Print given string
 void print(char s[]){
     printf("%s", s);
 }
 
+//Clear Terminal and Reset Cursor
 void clear_terminal(){
     char primitive_clear[20] = "\x1B[2J\x1B[H";
-    //char primitive_clear[20] = "cls";
     printf("%s", primitive_clear);
 }
 
+//Refresh terminal with updated game state
 void refresh_terminal(struct Player *p, struct Spiders * spids, struct P_Bullets * pbs){
     bool entity_printed = false;
-    //struct P_Bullet * b[MAX_BULLETS] = pbs->ptr_arr; Temp REMOVE
-    //int bs[MAX_BULLETS] = pbs->state_arr; TEMP REMOVE
 
     //Iterate By Line
     for(int i = 0; i <= term_height; i++){
@@ -50,7 +51,6 @@ void refresh_terminal(struct Player *p, struct Spiders * spids, struct P_Bullets
             if(((i == p->y) | p->found_pos_y) & (j == p->x)){
                 p->found_pos_y = true;
                 j += print_player(p);
-
                 //Entity Is being Printed
                 entity_printed = true;
             }
