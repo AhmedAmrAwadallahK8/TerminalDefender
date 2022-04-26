@@ -20,7 +20,7 @@
     bool is_moving;
 };**/
 
-//TODO: 
+//Creates a spider using dynamic memory
 struct Spider * create_spider(int x, int y){
     struct Spider * s = malloc(sizeof(struct Spider));
     //Body
@@ -48,6 +48,7 @@ struct Spider * create_spider(int x, int y){
     return s;
 }
 
+//Frees the memory allocated for this spider
 void free_spider(struct Spider * s){
     free(s);
 }
@@ -120,24 +121,8 @@ void spider_ai(struct Spider *s){
     }
 }
 
-
+//Prints spider to terminal
 int print_spider(struct Spider *s){
     if(s->is_moving==true){print_s_moving(s); return strlen(s->body1); }
     else{print_s_still(s); return strlen(s->body2);}
-}
-
-//Legacy Code
-//Print State 1 of Spider
-void print_s1(struct Spider s){
-    UD_movement(s.y);
-    LR_movement(s.x);
-    printf("%s", s.body1);
-}
-
-//Legacy Code
-//Print State 2 of Spider
-void print_s2(struct Spider s){
-    UD_movement(s.y);
-    LR_movement(s.x);
-    printf("%s", s.body2);
 }
