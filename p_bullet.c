@@ -4,6 +4,7 @@
 
 #include "p_bullet.h"
 
+//Creates a p_bullet and returns a copy
 struct P_Bullet create_p_bullet(int x, int y){
     struct P_Bullet b;
 
@@ -21,6 +22,7 @@ struct P_Bullet create_p_bullet(int x, int y){
     return b;
 }
 
+//Creates a p_bullet using dynamic memory
 struct P_Bullet * create_pb_ptr(int x, int y){
     struct P_Bullet *b = malloc(sizeof(struct P_Bullet));
 
@@ -38,21 +40,18 @@ struct P_Bullet * create_pb_ptr(int x, int y){
     return b;
 }
 
+//Frees memory
 void free_p_bullet(struct P_Bullet *b){
     free(b);
 }
 
+//Terminal printing logic
 int print_bullet(struct P_Bullet *b){
     printf("%s", b->body);
     return strlen(b->body);
 }
 
+//Bullet movement ai
 void bullet_ai(struct P_Bullet *b){
     b->x+=2;
-}
-
-void move_bullets(struct P_Bullet b[], int bullet_count){
-    for(int i = 0; i < bullet_count; i++){
-        bullet_ai(&b[i]);
-    }
 }

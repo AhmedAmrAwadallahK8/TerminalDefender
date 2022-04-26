@@ -6,20 +6,19 @@ struct P_Bullet {
     int x, y, h, w;
 };
 
-//Creates a P_Bullet and returns a copy of it
+//Creates a p_bullet and returns a copy
 struct P_Bullet create_p_bullet(int x, int y);
 
-//Creates a P_Bullet in the heap and returns a pointer to it
+//Creates a p_bullet using dynamic memory
 struct P_Bullet * create_pb_ptr(int x, int y);
 
-//Frees memory associated with p_bullet
+//Frees memory
 void free_p_bullet(struct P_Bullet *b);
 
-//Bullet move logic
-void bullet_ai(struct P_Bullet *b);
-
+//Terminal printing logic
 int print_bullet(struct P_Bullet *b);
 
-void move_bullets(struct P_Bullet b[], int bullet_count);
+//Bullet movement ai
+void bullet_ai(struct P_Bullet *b);
 
 #endif
