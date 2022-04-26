@@ -49,6 +49,15 @@ void move_spiders(struct Spiders *spids){
 }
 
 //Handles removal of spider
-void rem_spider(struct Spiders *spids, struct Spider s){
-
+void rem_spider(struct Spiders *spids, struct Spider *s){
+    struct Spider *curr_s = NULL;
+    for(int i = 0; i < MAX_SPIDERS; i++){
+        curr_s = spids->ptr_arr[i];
+        if(curr_s == s){
+            free_spider(s);
+            spids->state_arr[i] = 0;
+            spids->ptr_arr[i] = NULL;
+            spids->spider_count--;
+        }
+    }
 }

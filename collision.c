@@ -70,7 +70,7 @@ void detect_collision(struct Player * p, struct Spiders * spids, struct P_Bullet
             if(spids->state_arr[j] == 0){continue; }
             curr_s = spids->ptr_arr[j];
             collision = bullet_spider(curr_pb, curr_s);
-            if(collision){rem_p_bullet(pbs, curr_pb); continue;}
+            if(collision){rem_p_bullet(pbs, curr_pb); rem_spider(spids, curr_s); continue;}
         }
     }
 
