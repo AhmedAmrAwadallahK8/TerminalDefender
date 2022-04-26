@@ -21,7 +21,7 @@ void add_spider(struct Spiders * spids, int x, int y);
 //Adds spider to list with random start position
 void add_spider_rand(struct Spiders * spids);
 
-//Handles an array of spiders movement
+//Moves all spiders
 void move_spiders(struct Spiders * spids);
 
 #endif

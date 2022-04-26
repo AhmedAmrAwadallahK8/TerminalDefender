@@ -6,7 +6,7 @@
 #include "td_rand.h"
 #include "screen.h"
 
-//Creates spiders data structure
+//Creates data structure for holding multiple spiders
 struct Spiders create_spiders(){
     struct Spiders spids;
     spids.spider_count = 0;
@@ -39,7 +39,7 @@ void add_spider_rand(struct Spiders * spids){
 }
 
 
-//Handles an array of spiders movement
+//Moves all spiders
 void move_spiders(struct Spiders *spids){
     for(int i = 0; i < MAX_SPIDERS; i++){
         if(spids->state_arr[i] == 1){
