@@ -47,6 +47,10 @@ void game_end(){
     sleep(2);
 }
 
+void player_death(){
+    game_end();
+}
+
 //Steady State of Game
 void game_loop(){
     struct Player p;
@@ -82,6 +86,7 @@ void game_loop(){
                 move_spiders(&spids); 
 
                 detect_collision(&p, &spids, &pbs);
+                if(!(p.alive)){game = 0; }
 
                 refresh_terminal(&p, &spids, &pbs); 
                 

@@ -37,8 +37,8 @@ bool bullet_edge(struct P_Bullet * pb){
 }
 
 //Check if spider entity collided with player
-void spider_player(){
-
+bool spider_player(struct Spider * s, struct Player * p){
+    return rect_overlap(p->x, p->y, p->x+p->w, p->y+p->h, s->x, s->y,s->x+s->w,s->y+s->h);
 }
 
 //Handle Interaction after spider collides with player
@@ -75,4 +75,10 @@ void detect_collision(struct Player * p, struct Spiders * spids, struct P_Bullet
     }
 
     //Spider
+    for(int i = 0; i < MAX_SPIDERS; i++){
+        if(spids->state_arr[i] == 0){continue; }
+        curr_s = spids->ptr_arr[i];
+        collision = spider_player(curr_s, p);
+        if(collision){kill_player(p);  continue;} //Need function
+    }
 }

@@ -6,8 +6,14 @@
 struct Player {
     char head[6], body[6], leg1[6], leg2[6];
     int x, y, h, w, at, print_line, face_direc;
-    bool is_moving, found_pos_y, found_pos_x;
+    bool is_moving, found_pos_y, found_pos_x, alive;
 };
+
+//Returns player life status
+bool player_alive(struct Player * p);
+
+//Sets player to be dead
+void kill_player(struct Player * p);
 
 //Creates a player struct
 struct Player create_player(int x, int y);

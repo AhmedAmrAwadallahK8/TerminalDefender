@@ -50,8 +50,20 @@ struct Player create_player(int x, int y){
     //2: Left
     //3: Up
     p.face_direc = 0;
+
+    p.alive = true;
     
     return p;
+}
+
+//Returns player life status
+bool player_alive(struct Player * p){
+    return p->alive;
+}
+
+//Sets player to be dead
+void kill_player(struct Player * p){
+    p->alive = false;
 }
 
 //Move Position Up
