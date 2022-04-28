@@ -5,7 +5,7 @@
 void game_end();
 
 //Start Game
-void game_start();
+char game_start();
 
 #endif
 

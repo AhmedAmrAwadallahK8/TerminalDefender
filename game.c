@@ -52,7 +52,7 @@ void player_death(){
 }
 
 //Steady State of Game
-void game_loop(){
+char game_loop(){
     struct Player p;
     struct Spiders spids = create_spiders();
     struct P_Bullets pbs = create_p_bullets();
@@ -77,18 +77,18 @@ void game_loop(){
         while((input == 0) & (paused == false)){
             
             if(gt % wt == 0){
-                clear_terminal();
+                
 
                 update_step = true; //I think we have some continuity issues here
 
                 //Move NPCs
                 move_p_bullets(&pbs);
                 move_spiders(&spids); 
-
-                detect_collision(&p, &spids, &pbs);
-                if(!(p.alive)){game = 0; }
-
+                clear_terminal();
                 refresh_terminal(&p, &spids, &pbs); 
+                detect_collision(&p, &spids, &pbs);
+                if(!(p.alive)){return 'd'; }
+                
                 
 
                 
@@ -103,7 +103,7 @@ void game_loop(){
         //Input Conditionals
         switch(input){
             case 'q': //Quit Game
-                game = 0;
+                return 'q';
                 break;
             case 'K': //Player Left
                 if(update_step == true){p = p_move_left(p); }
@@ -137,11 +137,14 @@ void game_loop(){
             gt = gt_logic(gt);
         }
     }
+
+    return 'a';
 }
 
+
 //Starts Game
-void game_start(){
-    game_loop();
+char game_start(){
+    return game_loop();
 }
 
 

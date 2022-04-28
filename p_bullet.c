@@ -53,5 +53,5 @@ int print_bullet(struct P_Bullet *b){
 
 //Bullet movement ai
 void bullet_ai(struct P_Bullet *b){
-    b->x+=2;
+    b->x+=6;
 }
