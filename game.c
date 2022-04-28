@@ -51,10 +51,6 @@ void player_death(){
     game_end();
 }
 
-void setup_data_structs(){
-    
-}
-
 //Steady State of Game
 char game_loop(struct Player * p, struct Spiders * spids, struct P_Bullets * pbs){
     int game = 1, gt = 0, wt = 20000;
@@ -72,12 +68,8 @@ char game_loop(struct Player * p, struct Spiders * spids, struct P_Bullets * pbs
     while(game == 1){
         update_step = false;
         while((input == 0) & (paused == false)){
-            
             if(gt % wt == 0){
-                
-
                 update_step = true; //I think we have some continuity issues here
-
                 //Move NPCs
                 move_p_bullets(pbs);
                 move_spiders(spids);
@@ -85,12 +77,7 @@ char game_loop(struct Player * p, struct Spiders * spids, struct P_Bullets * pbs
                 clear_terminal();
                 refresh_terminal(p, spids, pbs); 
                 detect_collision(p, spids, pbs);
-                if(!(p->alive)){clear_terminal(); return 'd'; }
-                
-                
-                
-
-                
+                if(!(p->alive)){clear_terminal(); return 'd'; } 
             }
             //Keyboard Handling
             if(_kbhit()){input = kb_logic(); }
@@ -100,27 +87,28 @@ char game_loop(struct Player * p, struct Spiders * spids, struct P_Bullets * pbs
         }
 
         //Input Conditionals
+        
         switch(input){
             case 'q': //Quit Game
                 return 'q';
                 break;
             case 'K': //Player Left
-                if(update_step == true){p_move_left(p); }
+                if(update_step == true && !paused){p_move_left(p); }
                 break; 
             case 'M': //Player Right
-                if(update_step == true){p_move_right(p); }
+                if(update_step == true && !paused){p_move_right(p); }
                 break;
             case 'H': //Player UP
-                if(update_step == true){p_move_up(p); }
+                if(update_step == true && !paused){p_move_up(p); }
                 break;
             case 'P': //Player Down
-                if(update_step == true){p_move_down(p); }
+                if(update_step == true && !paused){p_move_down(p); }
                 break;
             case 'p': //Pause Game
                 paused = !paused;
                 break;
             case ' ': //Fire Bullet
-                add_p_bullet(pbs, p);
+                if(!paused){add_p_bullet(pbs, p); }
         }
         input = 0;
 
@@ -143,9 +131,12 @@ char game_loop(struct Player * p, struct Spiders * spids, struct P_Bullets * pbs
 
 //Starts Game
 char game_start(){
+    //Create Data Structures
     struct Player p = create_player(0, 3);
     struct Spiders spids = create_spiders();
     struct P_Bullets pbs = create_p_bullets();
+
+    //Start Game
     return game_loop(&p, &spids, &pbs);
 }
 
