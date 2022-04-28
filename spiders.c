@@ -33,9 +33,12 @@ void add_spider(struct Spiders * spids, int x, int y){
 
 //Adds spider to list with random posiiton on screen
 void add_spider_rand(struct Spiders * spids){
-    int x = rand_num(0, term_width);
-    int y = rand_num(0, term_height);
-    add_spider(spids, x, y);
+    int spawn_chance = rand_num(0, 19);
+    if(spawn_chance == 0){
+        int x = rand_num(0, term_width);
+        int y = rand_num(0, term_height);
+        add_spider(spids, x, y);
+    }
 }
 
 

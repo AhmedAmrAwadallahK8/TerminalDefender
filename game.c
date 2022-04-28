@@ -83,11 +83,13 @@ char game_loop(){
 
                 //Move NPCs
                 move_p_bullets(&pbs);
-                move_spiders(&spids); 
+                move_spiders(&spids);
+                add_spider_rand(&spids);
                 clear_terminal();
                 refresh_terminal(&p, &spids, &pbs); 
                 detect_collision(&p, &spids, &pbs);
-                if(!(p.alive)){return 'd'; }
+                if(!(p.alive)){clear_terminal(); return 'd'; }
+                
                 
                 
 
