@@ -79,6 +79,6 @@ void detect_collision(struct Player * p, struct Spiders * spids, struct P_Bullet
         if(spids->state_arr[i] == 0){continue; }
         curr_s = spids->ptr_arr[i];
         collision = spider_player(curr_s, p);
-        if(collision){kill_player(p);  continue;} //Need function
+        if(collision){kill_player(p); p->death_count++;  continue;} //Need function
     }
 }

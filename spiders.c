@@ -1,19 +1,24 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
 
 #include "spiders.h"
 #include "spider.h"
 #include "td_rand.h"
 #include "screen.h"
 
+#define SPAWN_PAD 40
+
 //Creates data structure for holding multiple spiders
 struct Spiders create_spiders(){
     struct Spiders spids;
     spids.spider_count = 0;
+    spids.death_count = 0;
     for(int i = 0; i < MAX_SPIDERS; i++){
         spids.ptr_arr[i] = NULL;
         spids.state_arr[i] = 0;
     }
+    
     return spids;
 }
 
@@ -32,10 +37,14 @@ void add_spider(struct Spiders * spids, int x, int y){
 }
 
 //Adds spider to list with random posiiton on screen
-void add_spider_rand(struct Spiders * spids){
+void add_spider_rand(struct Spiders * spids, struct Player * p){
     int spawn_chance = rand_num(0, 19);
     if(spawn_chance == 0){
-        int x = rand_num(0, term_width);
+        int x;
+        do{
+            x = rand_num(0, term_width);
+        }
+        while((x <= (p->x+SPAWN_PAD)) && (x >= (p->x-SPAWN_PAD)));
         int y = rand_num(0, term_height);
         add_spider(spids, x, y);
     }
@@ -61,6 +70,7 @@ void rem_spider(struct Spiders *spids, struct Spider *s){
             spids->state_arr[i] = 0;
             spids->ptr_arr[i] = NULL;
             spids->spider_count--;
+            spids->death_count++;
         }
     }
 }

@@ -39,7 +39,8 @@ void clear_terminal(){
 }
 
 //Refresh terminal with updated game state
-void refresh_terminal(struct Player *p, struct Spiders * spids, struct P_Bullets * pbs){
+void refresh_terminal(struct Player *p, struct Spiders * spids, struct P_Bullets * pbs){ 
+    //Still a bug that causes the screen to extend, think it occurs because of entity overlap
     bool entity_printed = false;
 
     //Iterate By Line
@@ -50,7 +51,7 @@ void refresh_terminal(struct Player *p, struct Spiders * spids, struct P_Bullets
             //Player
             if(((i == p->y) | p->found_pos_y) & (j == p->x)){
                 p->found_pos_y = true;
-                j += print_player(p);
+                j += print_player(p) - 1;
                 //Entity Is being Printed
                 entity_printed = true;
             }
@@ -59,7 +60,7 @@ void refresh_terminal(struct Player *p, struct Spiders * spids, struct P_Bullets
             for(int k = 0; k<MAX_BULLETS; k++){
                 if(pbs->state_arr[k] > 0){
                     if((j == pbs->ptr_arr[k]->x) & (i == pbs->ptr_arr[k]->y)){
-                        j += print_bullet(pbs->ptr_arr[k]);
+                        j += print_bullet(pbs->ptr_arr[k]) - 1;
 
                         //Entity Is being Printed
                         entity_printed = true;
@@ -71,16 +72,16 @@ void refresh_terminal(struct Player *p, struct Spiders * spids, struct P_Bullets
             for(int k = 0; k < MAX_SPIDERS; k++){
                 if(spids->state_arr[k] == 1){
                     if((j == spids->ptr_arr[k]->x) & (i == spids->ptr_arr[k]->y)){
-                        j += print_spider(spids->ptr_arr[k]);
+                        j += print_spider(spids->ptr_arr[k]) - 1;
 
                         //Entity Is being Printed
                         entity_printed = true;
                     }
                 }
             }
-
             if(!entity_printed){new_space(); }
         }
         new_line();
     }
+    printf("Spiders Killed: %d \nPlayer Deaths:  %d", spids->death_count, p->death_count);
 }

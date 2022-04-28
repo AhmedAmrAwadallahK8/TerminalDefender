@@ -77,7 +77,7 @@ void s_move_left(struct Spider *s){
 //Move Position Right
 void s_move_right(struct Spider *s){
     s->x++;
-    if(s->x > term_width){s->x = 0; }
+    if(s->x > term_width){s->x = term_width; }
     s->is_moving = true;
 }
 

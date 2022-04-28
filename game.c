@@ -84,7 +84,7 @@ char game_loop(){
                 //Move NPCs
                 move_p_bullets(&pbs);
                 move_spiders(&spids);
-                add_spider_rand(&spids);
+                add_spider_rand(&spids, &p);
                 clear_terminal();
                 refresh_terminal(&p, &spids, &pbs); 
                 detect_collision(&p, &spids, &pbs);
