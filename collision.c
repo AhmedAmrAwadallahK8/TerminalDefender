@@ -32,7 +32,7 @@ bool bullet_spider(struct P_Bullet * pb, struct Spider * s){
 
 //Check if bullet collided with edge of screen
 bool bullet_edge(struct P_Bullet * pb){
-    if(pb->x > term_width){return true; }
+    if((pb->x > term_width) || (pb->x < 0)){return true; }
     return false;
 }
 
@@ -79,6 +79,6 @@ void detect_collision(struct Player * p, struct Spiders * spids, struct P_Bullet
         if(spids->state_arr[i] == 0){continue; }
         curr_s = spids->ptr_arr[i];
         collision = spider_player(curr_s, p);
-        if(collision){kill_player(p); p->death_count++;  continue;} //Need function
+        if(collision){kill_player(p);  continue;} //Need function
     }
 }

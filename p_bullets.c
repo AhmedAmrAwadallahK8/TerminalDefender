@@ -30,7 +30,7 @@ void add_p_bullet(struct P_Bullets *pbs, struct Player *p){
     }
     if(i != MAX_BULLETS){
         pbs->state_arr[i] = pbs->running_tot;
-        pbs->ptr_arr[i] = create_pb_ptr(p->x, p->y);
+        pbs->ptr_arr[i] = create_pb_ptr(p->x, p->y, p->x_face);
     }
     else{ //In the futuer I want else to just remove the oldest bullet and replace it with the new one
         printf("\nP_Bullets Error: Index out of bounds"); exit(EXIT_FAILURE);

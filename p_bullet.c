@@ -9,7 +9,7 @@ struct P_Bullet create_p_bullet(int x, int y){
     struct P_Bullet b;
 
     //Appearance
-    strcpy(b.body, "->");
+    strcpy(b.body_r, "->");
     
     //Position
     b.x = x+3;
@@ -23,19 +23,32 @@ struct P_Bullet create_p_bullet(int x, int y){
 }
 
 //Creates a p_bullet using dynamic memory
-struct P_Bullet * create_pb_ptr(int x, int y){
+struct P_Bullet * create_pb_ptr(int x, int y, int p_x_face){
     struct P_Bullet *b = malloc(sizeof(struct P_Bullet));
 
     //Appearance
-    strcpy(b->body, "->");
+    strcpy(b->body_r, "->");
+
+    //Direction
+    b->face_direc = p_x_face;
     
     //Position
-    b->x = x+3;
-    b->y = y+1;
+    if(b->face_direc == 0){
+        strcpy(b->body_r, "->");
+        b->x = x+3;
+        b->y = y+1;
+    }
+    else{
+        strcpy(b->body_l, "<-");
+        b->x = x-3;
+        b->y = y+1;
+    }
 
     //Size
     b->h = 1;
     b->w = 2;
+
+     
     
     return b;
 }
@@ -47,11 +60,24 @@ void free_p_bullet(struct P_Bullet *b){
 
 //Terminal printing logic
 int print_bullet(struct P_Bullet *b){
-    printf("%s", b->body);
-    return strlen(b->body);
+    if(b->face_direc == 0){
+        printf("%s", b->body_r);
+        return strlen(b->body_r);
+    }
+    else if(b->face_direc == 2){
+        printf("%s", b->body_l);
+        return strlen(b->body_l);
+    }
+    return 0;
 }
 
 //Bullet movement ai
 void bullet_ai(struct P_Bullet *b){
-    b->x+=6;
+    if(b->face_direc == 0){
+        b->x+=6;
+    }
+    else{
+        b->x-=6;
+    }
+        
 }

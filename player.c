@@ -49,7 +49,8 @@ struct Player create_player(int x, int y){
     //1: Down
     //2: Left
     //3: Up
-    p.face_direc = 0;
+    p.x_face = 0;
+    p.y_face = 0;
 
     p.alive = true;
 
@@ -73,7 +74,7 @@ void kill_player(struct Player * p){
 void p_move_up(struct Player * p){
     p->y--;
     if(p->y < 0){p->y = term_height; }
-    p->face_direc = 3;
+    p->y_face = 3;
     p->is_moving = true;
 }
 
@@ -81,23 +82,23 @@ void p_move_up(struct Player * p){
 void p_move_down(struct Player * p){
     p->y++;
     if(p->y > term_height){p->y = 0; }
-    p->face_direc = 1;
+    p->y_face = 1;
     p->is_moving = true;
 }
 
 //Move Position Left
 void p_move_left(struct Player * p){
-    p->x--;
+    p->x-=2;
     if(p->x < 0){p->x = term_width; }
-    p->face_direc = 2;
+    p->x_face = 2;
     p->is_moving = true;
 }
 
 //Move Position Right
 void p_move_right(struct Player * p){
-    p->x++;
+    p->x+=2;
     if(p->x > term_width){p->x = 0; }
-    p->face_direc = 0;
+    p->x_face = 0;
     p->is_moving = true;
 }
 
