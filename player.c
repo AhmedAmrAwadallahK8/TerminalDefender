@@ -66,43 +66,39 @@ bool player_alive(struct Player * p){
 //Sets player to be dead
 void kill_player(struct Player * p){
     p->alive = false;
-     p->death_count++;
+    p->death_count++;
 }
 
 //Move Position Up
-struct Player p_move_up(struct Player p){
-    p.y--;
-    if(p.y < 0){p.y = term_height; }
-    p.face_direc = 3;
-    p.is_moving = true;
-    return p;
+void p_move_up(struct Player * p){
+    p->y--;
+    if(p->y < 0){p->y = term_height; }
+    p->face_direc = 3;
+    p->is_moving = true;
 }
 
 //Move Position Down
-struct Player p_move_down(struct Player p){
-    p.y++;
-    if(p.y > term_height){p.y = 0; }
-    p.face_direc = 1;
-    p.is_moving = true;
-    return p;
+void p_move_down(struct Player * p){
+    p->y++;
+    if(p->y > term_height){p->y = 0; }
+    p->face_direc = 1;
+    p->is_moving = true;
 }
 
 //Move Position Left
-struct Player p_move_left(struct Player p){
-    p.x--;
-    if(p.x < 0){p.x = term_width; }
-    p.face_direc = 2;
-    p.is_moving = true;
-    return p;
+void p_move_left(struct Player * p){
+    p->x--;
+    if(p->x < 0){p->x = term_width; }
+    p->face_direc = 2;
+    p->is_moving = true;
 }
 
 //Move Position Right
-struct Player p_move_right(struct Player p){
-    p.x++;
-    if(p.x > term_width){p.x = 0; }
-    p.face_direc = 0;
-    p.is_moving = true;
-    return p;
+void p_move_right(struct Player * p){
+    p->x++;
+    if(p->x > term_width){p->x = 0; }
+    p->face_direc = 0;
+    p->is_moving = true;
 }
 
 //Prints Head String to Terminal

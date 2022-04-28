@@ -51,24 +51,21 @@ void player_death(){
     game_end();
 }
 
-//Steady State of Game
-char game_loop(){
-    struct Player p;
-    struct Spiders spids = create_spiders();
-    struct P_Bullets pbs = create_p_bullets();
-    int game = 1, gt = 0, wt = 20000;
+void setup_data_structs(){
     
+}
+
+//Steady State of Game
+char game_loop(struct Player * p, struct Spiders * spids, struct P_Bullets * pbs){
+    int game = 1, gt = 0, wt = 20000;
     bool paused = false, update_step = false;
     char input = 0;
 
     //Set Random Seed
     srand(time(0));
 
-    //Create Initial Entities
-    p = create_player(0, 3);
-
-    add_spider(&spids, 40, 4);
-    add_spider(&spids, 60, 4);
+    add_spider(spids, 40, 4);
+    add_spider(spids, 60, 4);
     //add_spider_rand(&spids);
 
     //Game Start
@@ -82,13 +79,13 @@ char game_loop(){
                 update_step = true; //I think we have some continuity issues here
 
                 //Move NPCs
-                move_p_bullets(&pbs);
-                move_spiders(&spids);
-                add_spider_rand(&spids, &p);
+                move_p_bullets(pbs);
+                move_spiders(spids);
+                add_spider_rand(spids, p);
                 clear_terminal();
-                refresh_terminal(&p, &spids, &pbs); 
-                detect_collision(&p, &spids, &pbs);
-                if(!(p.alive)){clear_terminal(); return 'd'; }
+                refresh_terminal(p, spids, pbs); 
+                detect_collision(p, spids, pbs);
+                if(!(p->alive)){clear_terminal(); return 'd'; }
                 
                 
                 
@@ -108,22 +105,22 @@ char game_loop(){
                 return 'q';
                 break;
             case 'K': //Player Left
-                if(update_step == true){p = p_move_left(p); }
+                if(update_step == true){p_move_left(p); }
                 break; 
             case 'M': //Player Right
-                if(update_step == true){p = p_move_right(p); }
+                if(update_step == true){p_move_right(p); }
                 break;
             case 'H': //Player UP
-                if(update_step == true){p = p_move_up(p); }
+                if(update_step == true){p_move_up(p); }
                 break;
             case 'P': //Player Down
-                if(update_step == true){p = p_move_down(p); }
+                if(update_step == true){p_move_down(p); }
                 break;
             case 'p': //Pause Game
                 paused = !paused;
                 break;
             case ' ': //Fire Bullet
-                add_p_bullet(&pbs, &p);
+                add_p_bullet(pbs, p);
         }
         input = 0;
 
@@ -146,7 +143,10 @@ char game_loop(){
 
 //Starts Game
 char game_start(){
-    return game_loop();
+    struct Player p = create_player(0, 3);
+    struct Spiders spids = create_spiders();
+    struct P_Bullets pbs = create_p_bullets();
+    return game_loop(&p, &spids, &pbs);
 }
 
 
