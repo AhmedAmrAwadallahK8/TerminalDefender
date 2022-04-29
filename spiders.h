@@ -23,7 +23,7 @@ void add_spider(struct Spiders * spids, int x, int y);
 void add_spider_rand(struct Spiders * spids, struct Player * p);
 
 //Moves all spiders
-void move_spiders(struct Spiders * spids);
+void move_spiders(struct Spiders * spids, struct Player *p);
 
 //Handles removal of spider
 void rem_spider(struct Spiders *spids, struct Spider *s);

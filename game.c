@@ -74,7 +74,7 @@ char game_loop(struct Player * p, struct Spiders * spids, struct P_Bullets * pbs
                 update_step = true; //I think we have some continuity issues here
                 //Move NPCs
                 move_p_bullets(pbs);
-                move_spiders(spids);
+                move_spiders(spids, p);
                 add_spider_rand(spids, p);
                 clear_terminal();
                 refresh_terminal(p, spids, pbs); 
@@ -130,7 +130,7 @@ char game_loop(struct Player * p, struct Spiders * spids, struct P_Bullets * pbs
     return 'a';
 }
 
-//Game state will be broken if you dont fix below and main
+
 //Starts Game
 char game_start(){
     //Create Data Structures

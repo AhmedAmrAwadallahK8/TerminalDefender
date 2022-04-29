@@ -52,10 +52,10 @@ void add_spider_rand(struct Spiders * spids, struct Player * p){
 
 
 //Moves all spiders
-void move_spiders(struct Spiders *spids){
+void move_spiders(struct Spiders *spids, struct Player *p){
     for(int i = 0; i < MAX_SPIDERS; i++){
         if(spids->state_arr[i] == 1){
-            spider_ai(spids->ptr_arr[i]);
+            spider_ai(spids->ptr_arr[i], p);
         }
     }
 }

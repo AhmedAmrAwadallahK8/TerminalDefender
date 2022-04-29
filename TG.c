@@ -5,6 +5,8 @@
 #include <conio.h>
 #include <windows.h>
 
+//OLD PROTOTYPE BUILD
+
 //Game Time Logic
 int gt_logic(int gt){
     gt++;

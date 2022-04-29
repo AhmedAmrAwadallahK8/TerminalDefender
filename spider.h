@@ -2,6 +2,7 @@
 #define SPIDER_H
 
 #include <stdbool.h>
+#include "player.h"
 
 //Spider Base Fields
 struct Spider {
@@ -17,7 +18,7 @@ struct Spider * create_spider(int x, int y);
 void free_spider(struct Spider * s);
 
 //Decides how spider moves next turn
-void spider_ai(struct Spider *s);
+void spider_ai(struct Spider *s, struct Player *p);
 
 //Prints spider to terminal
 int print_spider(struct Spider *s);

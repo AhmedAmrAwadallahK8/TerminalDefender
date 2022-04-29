@@ -11,6 +11,9 @@
 #include "movement.h"
 #include "screen.h"
 #include "td_rand.h"
+#include "player.h"
+
+#define AGGRO_RANGE 30
 
 //Spider Base Fields
 //PROBLEM NOTE: NEED TO LEARN HOW TO HAVE STRUCTS DEFINITIONS IN SOURCE FILES
@@ -104,20 +107,82 @@ void print_s_moving(struct Spider *s){
     s->is_moving = false;
 }
 
-//Decides how spider moves next turn
-void spider_ai(struct Spider *s){
+//Returns true if player is near to spider
+bool player_nearby(struct Spider *s, struct Player *p){
+    if(s->x <= (p->x + AGGRO_RANGE)){
+        if(s->x >= (p->x - AGGRO_RANGE)){
+            return true;
+        }
+    }
+    return false;
+}
+
+//Using spider as origin, move toward player
+void chase_player(struct Spider *s, struct Player *p){
+    int x, y, m;
+    x = p->x - s->x;
+    y = p->y - s->y;
+    //Undefined Slope
+    if(x == 0){
+        if(y >= 0){
+            s_move_up(s);
+        }
+        else{
+            s_move_down(s);
+        }
+    }
+    //Defined Slope
+    else{
+        m = y/x;
+        if((m >= 1) || (m <= -1)){
+            if(y >= 0){
+            s_move_up(s);
+            }
+            else{
+                s_move_down(s);
+            }
+        }
+        else{
+            if(x >= 0){
+                s_move_right(s);
+            }
+            else{
+                s_move_left(s);
+            }
+        }
+    }
+
+}
+
+//Move spider randomly
+void move_rand(struct Spider *s){
     int move_dec = rand_num(0,4);
     switch(move_dec){
-        case 0: //Don't Move
-            return;
-        case 1: //Move Left
-            return s_move_left(s);
-        case 2: //Move Right
-            return s_move_right(s);
-        case 3: //Move Up
-            return s_move_up(s);
-        case 4: //Move Down
-            return s_move_down(s);        
+            case 0: //Don't Move
+                return;
+            case 1: //Move Left
+                s_move_left(s);
+                break;
+            case 2: //Move Right
+                s_move_right(s);
+                break;
+            case 3: //Move Up
+                s_move_up(s);
+                break;
+            case 4: //Move Down
+                s_move_down(s);
+                break;        
+    }
+}
+
+//Decides how spider moves next turn
+void spider_ai(struct Spider *s, struct Player *p){
+    bool p_near = player_nearby(s, p);
+    if(!p_near){
+        move_rand(s);
+    }
+    else{
+        chase_player(s, p);
     }
 }
 
