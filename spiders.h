@@ -1,6 +1,8 @@
 #ifndef SPIDERS_H
 #define SPIDERS_H
 
+#include <stdbool.h>
+
 
 #include "spider.h"
 #include "player.h"
@@ -10,7 +12,8 @@
 struct Spiders{
     struct Spider *ptr_arr[MAX_SPIDERS];
     int state_arr[MAX_SPIDERS];
-    int spider_count, death_count;
+    int spider_count, death_count, difficulty;
+    bool diff_increased;
 };
 
 //Creates spiders data structure

@@ -6,8 +6,9 @@
 
 //Possible Things to add
     //Multithreding for collisions maybe later
-    //Advanced Spider AI Want to do this FINISH COND
-    //Ramp Difficulty based on kill count Want to do this FINISH COND
+    //Spider Collision
+    //Ramp Difficulty based on kill count 
+        //Want to do this FINISH COND
     //Bullet cooldown cba
 
 int main(){

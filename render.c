@@ -83,5 +83,5 @@ void refresh_terminal(struct Player *p, struct Spiders * spids, struct P_Bullets
         }
         new_line();
     }
-    printf("Spiders Killed: %d \nPlayer Deaths:  %d", spids->death_count, p->death_count);
+    printf("Spiders Killed: %d | Difficulty Level: %d \nPlayer Deaths:  %d", spids->death_count, spids->difficulty, p->death_count);
 }

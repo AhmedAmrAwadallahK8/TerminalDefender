@@ -134,7 +134,6 @@ void chase_player(struct Spider *s, struct Player *p){
     }
     //Defined Slope
     else{
-        
         m = y/x;
         if((m >= 0.3) || (m <= -0.3)){
             if(y >= 0){

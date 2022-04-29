@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <stdbool.h>
 
 #include "spiders.h"
 #include "spider.h"
@@ -14,6 +15,8 @@ struct Spiders create_spiders(){
     struct Spiders spids;
     spids.spider_count = 0;
     spids.death_count = 0;
+    spids.difficulty = 1;
+    spids.diff_increased = false;
     for(int i = 0; i < MAX_SPIDERS; i++){
         spids.ptr_arr[i] = NULL;
         spids.state_arr[i] = 0;
@@ -33,12 +36,16 @@ void add_spider(struct Spiders * spids, int x, int y){
         spids->ptr_arr[i] = create_spider(x, y);
         spids->state_arr[i] = 1;
     }
-    else{printf("\nSpiders Error: Index out of bounds"); exit(EXIT_FAILURE); }
+    else{return; printf("\nSpiders Error: Index out of bounds"); exit(EXIT_FAILURE); } //Unreacheable code here
 }
 
 //Adds spider to list with random posiiton on screen
 void add_spider_rand(struct Spiders * spids, struct Player * p){
-    int spawn_chance = rand_num(0, 9);
+    if((spids->death_count > 0) && (spids->death_count % 10 == 0) && (spids->diff_increased == false)){
+        if(spids->difficulty != 9){spids->difficulty++; }
+        spids->diff_increased = true; }
+    else if(spids->death_count % 10 != 0){spids->diff_increased = false; }
+    int spawn_chance = rand_num(0, 9/spids->difficulty);
     if(spawn_chance == 0){
         int x;
         do{
