@@ -25,5 +25,8 @@ void rem_p_bullet(struct P_Bullets *pbs, struct P_Bullet *pb);
 //Passes all bullets to the bullet ai function
 void move_p_bullets(struct P_Bullets *pbs);
 
+//Resets the datastructure
+void reset_p_bullets(struct P_Bullets *pbs);
+
 
 #endif

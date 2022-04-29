@@ -38,7 +38,7 @@ void add_spider(struct Spiders * spids, int x, int y){
 
 //Adds spider to list with random posiiton on screen
 void add_spider_rand(struct Spiders * spids, struct Player * p){
-    int spawn_chance = rand_num(0, 19);
+    int spawn_chance = rand_num(0, 9);
     if(spawn_chance == 0){
         int x;
         do{
@@ -72,5 +72,14 @@ void rem_spider(struct Spiders *spids, struct Spider *s){
             spids->spider_count--;
             spids->death_count++;
         }
+    }
+}
+
+//Resets the dataset
+void reset_spiders(struct Spiders *spids){
+    for(int i = 0; i < MAX_SPIDERS; i++){
+        free(spids->ptr_arr[i]);
+        spids->ptr_arr[i] = NULL;
+        spids->state_arr[i] = 0;
     }
 }

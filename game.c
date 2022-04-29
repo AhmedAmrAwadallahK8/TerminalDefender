@@ -57,9 +57,11 @@ char game_loop(struct Player * p, struct Spiders * spids, struct P_Bullets * pbs
     bool paused = false, update_step = false;
     char input = 0;
 
-    //Set Random Seed
-    srand(time(0));
+    
 
+
+    add_spider_rand(spids, p);
+    add_spider_rand(spids, p);
     add_spider(spids, 40, 4);
     add_spider(spids, 60, 4);
     //add_spider_rand(&spids);
@@ -128,7 +130,7 @@ char game_loop(struct Player * p, struct Spiders * spids, struct P_Bullets * pbs
     return 'a';
 }
 
-
+//Game state will be broken if you dont fix below and main
 //Starts Game
 char game_start(){
     //Create Data Structures
@@ -136,8 +138,19 @@ char game_start(){
     struct Spiders spids = create_spiders();
     struct P_Bullets pbs = create_p_bullets();
 
+    //Set Random Seed
+    srand(time(0));
+    
+    while(game_loop(&p, &spids, &pbs) != 'q'){
+        reset_player(&p);
+        reset_spiders(&spids);
+        reset_p_bullets(&pbs);
+    }
+
+
     //Start Game
-    return game_loop(&p, &spids, &pbs);
+    //return game_loop(&p, &spids, &pbs);
+    return 'a';
 }
 
 

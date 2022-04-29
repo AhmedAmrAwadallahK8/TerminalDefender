@@ -5,11 +5,11 @@
 #include "game.h"
 
 int main(){
-    char end = 'a';
-    while(end != 'q'){
-        end = game_start();
-        if(end == 'd'){printf("\n%s", "You have Died."); sleep(2); }
-    }
-    
+    //char end = 'a';
+    //while(end != 'q'){
+    //    end = game_start();
+    //    if(end == 'd'){printf("\n%s", "You have Died."); sleep(2); }
+    //}
+    game_start();
     game_end();
 }

@@ -59,6 +59,21 @@ struct Player create_player(int x, int y){
     return p;
 }
 
+//Resets player position and state
+
+
+//Sets player to specifide position
+void player_set_pos(struct Player * p, int new_x, int new_y){
+    p->x = new_x;
+    p->y = new_y;
+}
+
+//Resets player position and state
+void reset_player(struct Player * p){
+    p->alive = true;
+    player_set_pos(p, 0, 3);
+}
+
 //Returns player life status
 bool player_alive(struct Player * p){
     return p->alive;

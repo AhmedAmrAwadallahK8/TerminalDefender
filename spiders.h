@@ -28,4 +28,7 @@ void move_spiders(struct Spiders * spids);
 //Handles removal of spider
 void rem_spider(struct Spiders *spids, struct Spider *s);
 
+//Resets the dataset
+void reset_spiders(struct Spiders *spids);
+
 #endif

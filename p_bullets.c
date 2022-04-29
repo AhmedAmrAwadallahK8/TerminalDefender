@@ -59,3 +59,12 @@ void move_p_bullets(struct P_Bullets *pbs){
         if(pbs->state_arr[i] > 0){bullet_ai(pbs->ptr_arr[i]); }
     }
 }
+
+//Resets the datastructure
+void reset_p_bullets(struct P_Bullets *pbs){
+    for(int i = 0; i < MAX_BULLETS; i++){
+        free(pbs->ptr_arr[i]);
+        pbs->ptr_arr[i] = NULL;
+        pbs->state_arr[i] = 0;
+    }
+}

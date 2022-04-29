@@ -18,6 +18,12 @@ void kill_player(struct Player * p);
 //Creates a player struct
 struct Player create_player(int x, int y);
 
+//Sets player to specifide position
+void player_set_pos(struct Player * p, int new_x, int new_y);
+
+//Resets player position and state
+void reset_player(struct Player * p);
+
 //Move Position Up
 void p_move_up(struct Player * p);
 
