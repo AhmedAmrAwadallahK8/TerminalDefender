@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
+#include <unistd.h>
 
 
 #include "spider.h"
@@ -119,27 +120,28 @@ bool player_nearby(struct Spider *s, struct Player *p){
 
 //Using spider as origin, move toward player
 void chase_player(struct Spider *s, struct Player *p){
-    int x, y, m;
+    double x, y, m;
     x = p->x - s->x;
     y = p->y - s->y;
     //Undefined Slope
     if(x == 0){
         if(y >= 0){
-            s_move_up(s);
+            s_move_down(s);
         }
         else{
-            s_move_down(s);
+            s_move_up(s);
         }
     }
     //Defined Slope
     else{
+        
         m = y/x;
-        if((m >= 1) || (m <= -1)){
+        if((m >= 0.3) || (m <= -0.3)){
             if(y >= 0){
-            s_move_up(s);
+                s_move_down(s);
             }
             else{
-                s_move_down(s);
+                s_move_up(s);
             }
         }
         else{
