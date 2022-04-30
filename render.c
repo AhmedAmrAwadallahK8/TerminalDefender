@@ -109,5 +109,6 @@ void refresh_terminal(struct Player *p, struct Spiders * spids, struct P_Bullets
         if(!entity_printed){print_edge(); }
         new_line();
     }
-    printf("Spiders Killed: %d | Difficulty Level: %d \nPlayer Deaths:  %d", spids->death_count, spids->difficulty, p->death_count);
+
+    printf("Spiders Killed: %d | Difficulty Level: %d | Highest Difficulty Level Reached: %d \nPlayer Deaths:  %d", spids->death_count, spids->difficulty, spids->highest_diff, p->death_count);
 }

@@ -16,6 +16,7 @@ struct Spiders create_spiders(){
     spids.spider_count = 0;
     spids.death_count = 0;
     spids.difficulty = 1;
+    spids.highest_diff = 1;
     spids.diff_increased = false;
     for(int i = 0; i < MAX_SPIDERS; i++){
         spids.ptr_arr[i] = NULL;
@@ -51,6 +52,7 @@ void add_spider_rand(struct Spiders * spids, struct Player * p){
         if(spids->difficulty != 9){spids->difficulty++; }
         spids->diff_increased = true; }
     else if(spids->death_count % 10 != 0){spids->diff_increased = false; }
+    if(spids->highest_diff < spids->difficulty){spids->highest_diff = spids->difficulty; }
     int spawn_chance = rand_num(0, 9/spids->difficulty);
     if(spawn_chance == 0){
         int x;

@@ -12,7 +12,7 @@
 struct Spiders{
     struct Spider *ptr_arr[MAX_SPIDERS];
     int state_arr[MAX_SPIDERS];
-    int spider_count, death_count, difficulty;
+    int spider_count, death_count, difficulty, highest_diff;
     bool diff_increased;
 };
 
