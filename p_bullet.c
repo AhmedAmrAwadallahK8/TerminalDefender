@@ -48,7 +48,8 @@ struct P_Bullet * create_pb_ptr(int x, int y, int p_x_face){
     b->h = 1;
     b->w = 2;
 
-     
+    b->speed = 5;
+    b->distance_trav = 0;
     
     return b;
 }
@@ -74,10 +75,11 @@ int print_bullet(struct P_Bullet *b){
 //Bullet movement ai
 void bullet_ai(struct P_Bullet *b){
     if(b->face_direc == 0){
-        b->x+=6;
+        b->x+=b->speed;
     }
     else{
-        b->x-=6;
+        b->x-=b->speed;
     }
+    b->distance_trav += b->speed;
         
 }

@@ -36,6 +36,12 @@ bool bullet_edge(struct P_Bullet * pb){
     return false;
 }
 
+//Check if bullet reach max distance
+bool bullet_max_dist(struct P_Bullet * pb){
+    if(pb->distance_trav > BULLET_MAX_DIST){return true; }
+    return false;
+}
+
 //Check if spider entity collided with player
 bool spider_player(struct Spider * s, struct Player * p){
     return rect_overlap(p->x, p->y, p->x+p->w, p->y+p->h, s->x, s->y,s->x+s->w,s->y+s->h);
@@ -62,6 +68,8 @@ void detect_collision(struct Player * p, struct Spiders * spids, struct P_Bullet
         if(pbs->state_arr[i] == 0){continue; }
 
         curr_pb = pbs->ptr_arr[i];
+
+        if(bullet_max_dist(curr_pb)){rem_p_bullet(pbs, curr_pb); continue; }
 
         collision = bullet_edge(curr_pb);
         if(collision){rem_p_bullet(pbs, curr_pb); continue; }

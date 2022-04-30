@@ -1,9 +1,11 @@
 #ifndef P_BULLET_H
 #define P_BULLET_H
 
+#define BULLET_MAX_DIST 60
+
 struct P_Bullet {
     char body_r[6], body_l[6];
-    int x, y, h, w, face_direc;
+    int x, y, h, w, face_direc, speed, distance_trav;
 };
 
 //Creates a p_bullet and returns a copy
