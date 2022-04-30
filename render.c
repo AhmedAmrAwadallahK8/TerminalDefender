@@ -22,6 +22,12 @@ void new_line(){
     printf("\n");
 }
 
+//Print Edge
+void print_edge(){
+    printf("|");
+
+}
+
 //Print space
 void new_space(){
     printf(" ");
@@ -45,6 +51,7 @@ void refresh_terminal(struct Player *p, struct Spiders * spids, struct P_Bullets
 
     //Iterate By Line
     for(int i = 0; i <= term_height; i++){
+        print_edge();
         //Iterate By Space
         for(int j = 0; j<= term_width; j++){
             entity_printed = false;
@@ -81,6 +88,7 @@ void refresh_terminal(struct Player *p, struct Spiders * spids, struct P_Bullets
             }
             if(!entity_printed){new_space(); }
         }
+        print_edge();
         new_line();
     }
     printf("Spiders Killed: %d | Difficulty Level: %d \nPlayer Deaths:  %d", spids->death_count, spids->difficulty, p->death_count);

@@ -122,7 +122,7 @@ bool player_nearby(struct Spider *s, struct Player *p){
 void chase_player(struct Spider *s, struct Player *p){
     double x, y, m;
     x = p->x - s->x;
-    y = p->y - s->y;
+    y = p->y - s->y + rand_num(0,2);
     //Undefined Slope
     if(x == 0){
         if(y >= 0){
@@ -135,7 +135,7 @@ void chase_player(struct Spider *s, struct Player *p){
     //Defined Slope
     else{
         m = y/x;
-        if((m >= 0.3) || (m <= -0.3)){
+        if((m >= 0.15) || (m <= -0.15)){
             if(y >= 0){
                 s_move_down(s);
             }
