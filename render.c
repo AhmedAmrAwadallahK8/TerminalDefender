@@ -33,6 +33,11 @@ void new_space(){
     printf(" ");
 }
 
+//Print dash
+void new_dash(){
+    printf("_");
+}
+
 //Print given string
 void print(char s[]){
     printf("%s", s);
@@ -49,11 +54,15 @@ void refresh_terminal(struct Player *p, struct Spiders * spids, struct P_Bullets
     //Still a bug that causes the screen to extend, think it occurs because of entity overlap
     bool entity_printed = false;
 
+    for(int j = 0; j<= term_width; j++){new_dash(); }
+    new_line();
+
     //Iterate By Line
     for(int i = 0; i <= term_height; i++){
         print_edge();
         //Iterate By Space
         for(int j = 0; j<= term_width; j++){
+            
             entity_printed = false;
             //Player
             if(((i == p->y) | p->found_pos_y) & (j == p->x)){
@@ -86,9 +95,17 @@ void refresh_terminal(struct Player *p, struct Spiders * spids, struct P_Bullets
                     }
                 }
             }
-            if(!entity_printed){new_space(); }
+            //if(!entity_printed){new_space(); }
+            if(!entity_printed){
+                if((i == term_height)){
+                    new_dash();
+                }
+                else{
+                    new_space();
+                }
+            }
         }
-        print_edge();
+        if(!entity_printed){print_edge(); }
         new_line();
     }
     printf("Spiders Killed: %d | Difficulty Level: %d \nPlayer Deaths:  %d", spids->death_count, spids->difficulty, p->death_count);
