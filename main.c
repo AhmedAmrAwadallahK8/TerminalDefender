@@ -9,6 +9,7 @@
     //Spider Collision
     //Ramp Difficulty based on kill count 
         //Want to do this FINISH COND
+        //Almmost done, allow difficulty to increase spider speed
     //Bullet cooldown cba
 
 int main(){

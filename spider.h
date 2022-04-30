@@ -7,7 +7,7 @@
 //Spider Base Fields
 struct Spider {
     char body1[20], body2[20];
-    int x, y, h, w, at;
+    int x, y, h, w, at, speed;
     bool is_moving, found_pos_y, found_pos_x;
 };
 
@@ -22,5 +22,8 @@ void spider_ai(struct Spider *s, struct Player *p);
 
 //Prints spider to terminal
 int print_spider(struct Spider *s);
+
+//Changes speed based on difficulty level
+void update_spider_speed(struct Spider *s, int diff);
 
 #endif

@@ -53,7 +53,8 @@ void clear_terminal(){
 void refresh_terminal(struct Player *p, struct Spiders * spids, struct P_Bullets * pbs){ 
     //Still a bug that causes the screen to extend, think it occurs because of entity overlap
     bool entity_printed = false;
-
+    new_line();
+    new_space();
     for(int j = 0; j<= term_width; j++){new_dash(); }
     new_line();
 

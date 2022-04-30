@@ -49,6 +49,8 @@ struct Spider * create_spider(int x, int y){
     s->found_pos_y = false;
     s->found_pos_x = false;
 
+    s->speed = 1;
+
     return s;
 }
 
@@ -59,28 +61,28 @@ void free_spider(struct Spider * s){
 
 //Move Position Up
 void s_move_up(struct Spider *s){
-    s->y--;
+    s->y-= s->speed;
     if(s->y < 0){s->y = term_height; }
     s->is_moving = true;
 }
 
 //Move Position Down
 void s_move_down(struct Spider *s){
-    s->y++;
+    s->y+=s->speed;
     if(s->y > term_height){s->y = 0; }
     s->is_moving = true;
 }
 
 //Move Position Left
 void s_move_left(struct Spider *s){
-    s->x--;
+    s->x-=s->speed;
     if(s->x < 0){s->x = term_width; }
     s->is_moving = true;
 }
 
 //Move Position Right
 void s_move_right(struct Spider *s){
-    s->x++;
+    s->x+=s->speed;
     if(s->x > term_width){s->x = term_width; }
     s->is_moving = true;
 }
@@ -174,6 +176,11 @@ void move_rand(struct Spider *s){
                 s_move_down(s);
                 break;        
     }
+}
+
+//Changes speed based on difficulty level
+void update_spider_speed(struct Spider *s, int diff){
+    s->speed = 1 + diff/3;
 }
 
 //Decides how spider moves next turn

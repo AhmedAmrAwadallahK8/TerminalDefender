@@ -68,6 +68,7 @@ void add_spider_rand(struct Spiders * spids, struct Player * p){
 void move_spiders(struct Spiders *spids, struct Player *p){
     for(int i = 0; i < MAX_SPIDERS; i++){
         if(spids->state_arr[i] == 1){
+            update_spider_speed(spids->ptr_arr[i], spids->difficulty);
             spider_ai(spids->ptr_arr[i], p);
         }
     }
