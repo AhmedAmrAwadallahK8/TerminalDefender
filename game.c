@@ -57,14 +57,9 @@ char game_loop(struct Player * p, struct Spiders * spids, struct P_Bullets * pbs
     bool paused = false, update_step = false;
     char input = 0;
 
-    
+    add_spider(spids, 30, 4);
+    add_spider(spids, 160, 4);
 
-
-    add_spider_rand(spids, p);
-    add_spider_rand(spids, p);
-    add_spider(spids, 40, 4);
-    add_spider(spids, 60, 4);
-    //add_spider_rand(&spids);
 
     //Game Start
     while(game == 1){
@@ -79,7 +74,7 @@ char game_loop(struct Player * p, struct Spiders * spids, struct P_Bullets * pbs
                 clear_terminal();
                 refresh_terminal(p, spids, pbs); 
                 detect_collision(p, spids, pbs);
-                if(!(p->alive)){clear_terminal(); return 'd'; } 
+                if(!(p->alive)){clear_terminal(); reduce_difficulty(spids); return 'd'; } 
             }
             //Keyboard Handling
             if(_kbhit()){input = kb_logic(); }
@@ -134,7 +129,7 @@ char game_loop(struct Player * p, struct Spiders * spids, struct P_Bullets * pbs
 //Starts Game
 char game_start(){
     //Create Data Structures
-    struct Player p = create_player(0, 3);
+    struct Player p = create_player(100, 3);
     struct Spiders spids = create_spiders();
     struct P_Bullets pbs = create_p_bullets();
 
@@ -145,6 +140,7 @@ char game_start(){
         reset_player(&p);
         reset_spiders(&spids);
         reset_p_bullets(&pbs);
+        
     }
 
 

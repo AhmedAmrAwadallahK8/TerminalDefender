@@ -71,7 +71,7 @@ void player_set_pos(struct Player * p, int new_x, int new_y){
 //Resets player position and state
 void reset_player(struct Player * p){
     p->alive = true;
-    player_set_pos(p, 0, 3);
+    player_set_pos(p, 100, 3);
 }
 
 //Returns player life status

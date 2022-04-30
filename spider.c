@@ -14,7 +14,7 @@
 #include "td_rand.h"
 #include "player.h"
 
-#define AGGRO_RANGE 30
+#define AGGRO_RANGE 100
 
 //Spider Base Fields
 //PROBLEM NOTE: NEED TO LEARN HOW TO HAVE STRUCTS DEFINITIONS IN SOURCE FILES

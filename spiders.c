@@ -8,7 +8,7 @@
 #include "td_rand.h"
 #include "screen.h"
 
-#define SPAWN_PAD 40
+#define SPAWN_PAD 15
 
 //Creates data structure for holding multiple spiders
 struct Spiders create_spiders(){
@@ -23,6 +23,12 @@ struct Spiders create_spiders(){
     }
     
     return spids;
+}
+
+//Reduces difficulty level
+void reduce_difficulty(struct Spiders * spids){
+    spids->difficulty -= 3;
+    if(spids->difficulty < 1){spids->difficulty=1; }
 }
 
 //Adds spider to the list, if full throws error

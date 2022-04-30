@@ -16,6 +16,9 @@ struct Spiders{
     bool diff_increased;
 };
 
+//Reduces difficulty level
+void reduce_difficulty(struct Spiders * spids);
+
 //Creates spiders data structure
 struct Spiders create_spiders();
 
