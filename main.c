@@ -7,10 +7,8 @@
 //Possible Things to add
     //Multithreding for collisions maybe later
     //Spider Collision
-    //Ramp Difficulty based on kill count 
-        //Want to do this FINISH COND
-        //Almmost done, allow difficulty to increase spider speed
     //Bullet cooldown cba
+    //Better terminal clearing https://stackoverflow.com/questions/43116/how-can-i-run-an-external-program-from-c-and-parse-its-output/28971647#28971647
 
 int main(){
     //char end = 'a';

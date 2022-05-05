@@ -4,6 +4,7 @@
 //Go to next line repeat above.
 //Repeat until last line reached on screen
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
 
@@ -45,8 +46,14 @@ void print(char s[]){
 
 //Clear Terminal and Reset Cursor
 void clear_terminal(){
-    char primitive_clear[20] = "\x1B[2J\x1B[H";
-    printf("%s", primitive_clear);
+    //FILE *fp;
+    //fp = popen("cls *", "r");
+
+    //char primitive_clear[20] = "\x1B[2J\x1B[H";
+    //char primitive_clear[20] = "cls";
+    system("cls");
+    //printf("%s", fp);
+    //pclose(fp);
 }
 
 //Refresh terminal with updated game state

@@ -140,7 +140,6 @@ char game_start(){
         reset_player(&p);
         reset_spiders(&spids);
         reset_p_bullets(&pbs);
-        
     }
 
 
